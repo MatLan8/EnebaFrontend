@@ -45,7 +45,10 @@ interface StoreFiltersProps {
   onChange: (value: StoreFilterValue) => void;
 }
 
-export function groupOptions(filters: ProductFiltersResponse | undefined, group: FilterGroup) {
+export function groupOptions(
+  filters: ProductFiltersResponse | undefined,
+  group: FilterGroup,
+) {
   if (!filters) return [];
   if (group === "type") return filters.types;
   if (group === "platform") return filters.platforms;
@@ -90,7 +93,10 @@ export function PriceFields({
 export function StoreFilters({ filters, value, onChange }: StoreFiltersProps) {
   return (
     <aside className={styles.filters}>
-      <FilterSection title="Price" selectedCount={priceSelectionCount(value)}>
+      <FilterSection
+        title="Price range (EUR)"
+        selectedCount={priceSelectionCount(value)}
+      >
         <PriceFields value={value} onChange={onChange} />
       </FilterSection>
       {filterGroups.map((item) => (

@@ -1,4 +1,5 @@
 import { Route, Routes, useLocation } from "react-router-dom";
+import { Footer } from "./components/footer/Footer";
 import { Header } from "./components/header/Header";
 import { StorePage } from "./pages/StorePage/StorePage";
 import { ROUTES } from "./routes/paths";
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route path={ROUTES.store} element={<StorePage key={resetKey} />} />
       </Routes>
+      <Footer />
     </>
   );
 }

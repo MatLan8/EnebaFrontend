@@ -1,0 +1,303 @@
+.footer {
+  margin-top: var(--space-40);
+  background: var(--color-overlay-70);
+  color: var(--color-text);
+}
+
+.inner {
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+  padding: 0 var(--layout-padding) var(--space-40);
+}
+
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-right: -10px;
+  padding-bottom: var(--space-30);
+}
+
+.column,
+.follow,
+.apps,
+.reviews {
+  flex: auto;
+  margin: 0;
+  padding: var(--space-30) var(--space-10) 0 0;
+  list-style: none;
+}
+
+.column {
+  display: grid;
+}
+
+.follow {
+  padding-right: var(--space-20);
+}
+
+.heading {
+  display: block;
+  padding-bottom: var(--space-10);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-black);
+  line-height: var(--line-height-body);
+}
+
+.link {
+  display: block;
+  padding: var(--space-3) 0;
+  color: var(--color-text-nav);
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-body);
+  text-align: left;
+  transition: color var(--duration) var(--ease);
+}
+
+.link:hover,
+.socialLink:hover,
+.inlineButton:hover {
+  color: var(--color-cta);
+}
+
+.link:focus,
+.link:focus-visible,
+.socialLink:focus,
+.socialLink:focus-visible,
+.badgeButton:focus,
+.badgeButton:focus-visible,
+.trustpilot:focus,
+.trustpilot:focus-visible {
+  outline: none;
+}
+
+.badgeButton {
+  display: block;
+  width: fit-content;
+}
+
+.social {
+  display: grid;
+  grid-template-columns: repeat(5, 20px);
+  gap: var(--space-10);
+  align-items: center;
+  margin: 0 0 var(--space-25);
+  padding: 0;
+  list-style: none;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--color-text);
+  transition: color var(--duration) var(--ease);
+}
+
+.socialLink svg {
+  max-width: 20px;
+  max-height: 20px;
+}
+
+.award {
+  display: flex;
+  align-items: center;
+  width: 114px;
+  height: 40px;
+  border-radius: var(--radius-2);
+  background: var(--color-danger);
+  box-shadow: var(--shadow-hard);
+  color: var(--color-text);
+}
+
+.award span {
+  font-size: var(--font-size-10);
+  font-weight: var(--font-weight-black);
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.partner {
+  width: 130px;
+  height: auto;
+  margin: var(--space-8) 0 0 -5px;
+}
+
+.apps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-10);
+}
+
+.badge {
+  width: 136px;
+  height: 40px;
+}
+
+.trustpilot {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+  color: var(--color-text);
+  text-align: left;
+}
+
+.trustpilotName {
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-black);
+  line-height: 1;
+}
+
+.trustpilotStar {
+  color: #00b67a;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.starBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: #00b67a;
+  color: var(--color-text);
+  font-size: var(--font-size-14);
+  line-height: 1;
+}
+
+.trustScore {
+  font-size: var(--font-size-10);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.2;
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-20);
+  margin-bottom: var(--space-40);
+}
+
+.newsletter {
+  flex: 1 1 400px;
+}
+
+.newsletterTitle {
+  margin: 0;
+  padding-bottom: var(--space-10);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-black);
+  line-height: var(--line-height-body);
+}
+
+.newsletterRow {
+  display: flex;
+  max-width: 400px;
+}
+
+.email {
+  flex: 1;
+  min-width: 0;
+  height: 35px;
+  padding: 0 0 0 var(--space-15);
+  border: var(--border-light);
+  background: transparent;
+  color: var(--color-text);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-black);
+  line-height: 32px;
+  outline: none;
+}
+
+.email::placeholder {
+  color: var(--color-text-muted);
+}
+
+.email:focus,
+.email:focus-visible {
+  outline: none;
+}
+
+.subscribe,
+.language {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 35px;
+  padding: 0 var(--space-10);
+  border: var(--border-light);
+  background: transparent;
+  color: var(--color-text);
+  font-weight: var(--font-weight-black);
+  line-height: 1;
+  transition: var(--transition-ui);
+}
+
+.subscribe {
+  margin-left: -1px;
+  font-size: var(--font-size-15);
+}
+
+.language {
+  gap: var(--space-5);
+  font-size: 1.3rem;
+}
+
+.subscribe:hover,
+.language:hover {
+  border-color: var(--color-cta);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.subscribe:focus,
+.subscribe:focus-visible,
+.language:focus,
+.language:focus-visible,
+.inlineButton:focus,
+.inlineButton:focus-visible {
+  outline: none;
+}
+
+.divider {
+  width: 1px;
+  height: 13px;
+  background: var(--color-text);
+}
+
+.note {
+  margin: var(--space-5) 0 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-body);
+}
+
+.inlineButton {
+  color: var(--color-text-nav);
+  font-weight: var(--font-weight-medium);
+  text-decoration: underline;
+  transition: color var(--duration) var(--ease);
+}
+
+.copyright {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-body);
+}
+
+.inlineButton {
+  padding: 0;
+  font-size: inherit;
+  line-height: inherit;
+}

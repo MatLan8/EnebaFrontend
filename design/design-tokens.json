@@ -1,0 +1,381 @@
+{
+  "meta": {
+    "site": "https://www.eneba.com",
+    "extractedAt": "2026-11-18",
+    "dembrandtVersion": "0.39.2",
+    "pages": {
+      "dembrandtDesktop": [
+        "https://www.eneba.com/",
+        "https://www.eneba.com/store/all"
+      ],
+      "browserDesktop": [
+        "https://www.eneba.com/",
+        "https://www.eneba.com/store/all",
+        "https://www.eneba.com/checkout"
+      ],
+      "browserMobile": {
+        "viewport": "390x844",
+        "deviceScaleFactor": 2,
+        "pages": [
+          "https://www.eneba.com/",
+          "https://www.eneba.com/store/all"
+        ]
+      }
+    },
+    "notExtracted": [
+      "Signed-in pages (login, register, order history, product purchase confirmation). Checkout was inspected while logged out, with one item in the cart."
+    ],
+    "cssVariables": {},
+    "cssVariableNote": "Measured: no custom properties on :root, html, or computed styles. Colors and sizes are written directly in the CSS.",
+    "rootFontSize": {
+      "value": "62.5%",
+      "resolved": "10px when the browser default is 16px",
+      "source": "html { font-size: 62.5% } in main.css",
+      "provenance": "measured"
+    },
+    "provenanceLegend": {
+      "measured": "Read from computed style, a loaded stylesheet, or a Dembrandt extraction of a rendered page.",
+      "inferred": "A reasonable reading of a measured value whose component or intent was not isolated."
+    }
+  },
+  "color": {
+    "semantic": [
+      {
+        "name": "page",
+        "hex": "#4618ac",
+        "rgb": "rgb(70, 24, 172)",
+        "role": "Page background. Also the mobile header background.",
+        "provenance": "measured"
+      },
+      {
+        "name": "surface",
+        "hex": "#351183",
+        "rgb": "rgb(53, 17, 131)",
+        "role": "Checkout header bar and checkout panels (cart, delivery, summary).",
+        "provenance": "measured"
+      },
+      {
+        "name": "surface-raised",
+        "hex": "#1f0a4d",
+        "rgb": "rgb(31, 10, 77)",
+        "role": "Product card fill, checkout recommendation cards, checkout trust band.",
+        "provenance": "measured"
+      },
+      {
+        "name": "surface-deep",
+        "hex": "#150734",
+        "rgb": "rgb(21, 7, 52)",
+        "role": "Present in rendered text/background pairs. The component was not isolated.",
+        "provenance": "measured",
+        "component": "inferred-unknown"
+      },
+      {
+        "name": "surface-deepest",
+        "hex": "#0e0523",
+        "rgb": "rgb(14, 5, 35)",
+        "role": "Present in rendered text/background pairs. The component was not isolated.",
+        "provenance": "measured",
+        "component": "inferred-unknown"
+      },
+      {
+        "name": "filter",
+        "hex": "#5825cc",
+        "rgb": "rgb(88, 37, 204)",
+        "role": "Store filter accordion headers.",
+        "provenance": "measured"
+      },
+      {
+        "name": "filter-mobile",
+        "hex": "#2c0e6c",
+        "rgb": "rgb(44, 14, 108)",
+        "role": "Mobile \"Sort and filter\" button.",
+        "provenance": "measured"
+      },
+      {
+        "name": "cta",
+        "hex": "#fad318",
+        "rgb": "rgb(250, 211, 24)",
+        "role": "Primary action fill. Text on it is black.",
+        "provenance": "measured"
+      },
+      {
+        "name": "cta-hover-gold",
+        "hex": "#f0a613",
+        "rgb": "rgb(240, 166, 19)",
+        "role": "Hover and focus color declared in CSS. Also the header hover target for links and icon buttons.",
+        "provenance": "measured"
+      },
+      {
+        "name": "text",
+        "hex": "#ffffff",
+        "rgb": "rgb(255, 255, 255)",
+        "role": "Default text and icon color.",
+        "provenance": "measured"
+      },
+      {
+        "name": "text-on-cta",
+        "hex": "#000000",
+        "rgb": "rgb(0, 0, 0)",
+        "role": "Text on yellow buttons.",
+        "provenance": "measured"
+      },
+      {
+        "name": "text-nav",
+        "hex": "#dcd8e6",
+        "rgb": "rgb(220, 216, 230)",
+        "role": "Category navigation links.",
+        "provenance": "measured"
+      },
+      {
+        "name": "text-muted",
+        "hex": "#b3aac9",
+        "rgb": "rgb(179, 170, 201)",
+        "role": "Secondary card text (\"From\") and input text.",
+        "provenance": "measured"
+      },
+      {
+        "name": "text-soft",
+        "rgb": "rgba(255, 255, 255, 0.85)",
+        "role": "Publisher or platform line on a product card.",
+        "provenance": "measured"
+      },
+      {
+        "name": "text-faint",
+        "rgb": "rgba(255, 255, 255, 0.7)",
+        "role": "Checkout icon buttons (wishlist, remove).",
+        "provenance": "measured"
+      },
+      {
+        "name": "text-disabled",
+        "rgb": "rgba(255, 255, 255, 0.4)",
+        "role": "Inactive checkout steps.",
+        "provenance": "measured"
+      },
+      {
+        "name": "mint",
+        "hex": "#63e3c2",
+        "rgb": "rgb(99, 227, 194)",
+        "role": "Product card border.",
+        "provenance": "measured"
+      },
+      {
+        "name": "teal",
+        "hex": "#23c299",
+        "rgb": "rgb(35, 194, 153)",
+        "role": "Region line on cards, active checkout step label, cashback amount.",
+        "provenance": "measured"
+      },
+      {
+        "name": "discount",
+        "hex": "#84e916",
+        "rgb": "rgb(132, 233, 22)",
+        "role": "Discount and cashback percent on cards.",
+        "provenance": "measured"
+      },
+      {
+        "name": "danger",
+        "hex": "#eb002e",
+        "rgb": "rgb(235, 0, 46)",
+        "role": "Seen once as a fill on the homepage. Likely a sale or alert badge. Component not isolated.",
+        "provenance": "measured",
+        "component": "inferred-unknown"
+      },
+      {
+        "name": "danger-shadow",
+        "hex": "#99001f",
+        "rgb": "rgb(153, 0, 31)",
+        "role": "Hard offset shadow, 2px 3px 0.",
+        "provenance": "measured"
+      },
+      {
+        "name": "disabled-label",
+        "hex": "#9385b2",
+        "rgb": "rgb(147, 133, 178)",
+        "role": "Disabled button text on the page background. Contrast against #4618ac is about 3.14:1.",
+        "provenance": "measured"
+      }
+    ],
+    "overlays": [
+      { "value": "rgba(0, 0, 0, 0.12)", "role": "Checkout cart row", "provenance": "measured" },
+      { "value": "rgba(0, 0, 0, 0.2)", "role": "Text input fill", "provenance": "measured" },
+      { "value": "rgba(0, 0, 0, 0.25)", "role": "Seen as a fill on the homepage", "provenance": "measured" },
+      { "value": "rgba(0, 0, 0, 0.4)", "role": "Seen as a fill on the homepage", "provenance": "measured" },
+      { "value": "rgba(0, 0, 0, 0.55)", "role": "Seen as a fill on the homepage", "provenance": "measured" },
+      { "value": "rgba(0, 0, 0, 0.7)", "role": "Footer background", "provenance": "measured" }
+    ],
+    "gradients": [
+      {
+        "value": "linear-gradient(90deg, #d32252 0%, #3c1395 100%)",
+        "role": "Highlighted category pill (GTA 6) via background-image",
+        "provenance": "measured"
+      },
+      {
+        "value": "linear-gradient(90deg, #4618ac 50%, transparent)",
+        "role": "Carousel edge fade",
+        "provenance": "measured"
+      },
+      {
+        "value": "linear-gradient(90deg, transparent, #4618ac 50%)",
+        "role": "Carousel edge fade, opposite side",
+        "provenance": "measured"
+      }
+    ],
+    "logoOnly": {
+      "note": "These colors are inside the wordmark SVG. They are not UI surfaces.",
+      "provenance": "measured",
+      "hex": ["#fd5a20", "#fdbf45", "#fa9837", "#a30011", "#f33d96", "#e10d66", "#1f9175", "#7ef4c3", "#4cd69e"]
+    },
+    "unassignedFill": {
+      "hex": "#7a4edf",
+      "rgb": "rgb(122, 78, 223)",
+      "note": "The most common non-transparent fill on the homepage sample (28 elements). The component was not isolated.",
+      "provenance": "measured"
+    }
+  },
+  "typography": {
+    "family": {
+      "ui": "metropolis, Arial, Helvetica, sans-serif",
+      "mono": "metropolis-monospace",
+      "provenance": "measured"
+    },
+    "files": [
+      { "family": "metropolis", "weight": 400, "file": "https://static.eneba.games/fonts/Metropolis-Regular.woff2" },
+      { "family": "metropolis", "weight": 600, "file": "https://static.eneba.games/fonts/Metropolis-Medium.woff2" },
+      { "family": "metropolis", "weight": 800, "file": "https://static.eneba.games/fonts/Metropolis-Bold.woff2" },
+      { "family": "metropolis-monospace", "weight": 400, "file": "https://static.eneba.games/fonts/Monospace-Metropolis-Regular.woff2" },
+      { "family": "metropolis-monospace", "weight": 600, "file": "https://static.eneba.games/fonts/Monospace-Metropolis-Medium.woff2" },
+      { "family": "metropolis-monospace", "weight": 800, "file": "https://static.eneba.games/fonts/Monospace-Metropolis-Bold.woff2" }
+    ],
+    "fontDisplay": "swap",
+    "weightNote": "Computed headings use font-weight 700, but no 700 file is declared. 400, 600, and 800 are the loaded weights.",
+    "letterSpacing": {
+      "computedOnSampledUi": "normal",
+      "stylesheetExceptions": ["1px", "2px"],
+      "provenance": "measured"
+    },
+    "scale": [
+      { "px": 30, "rem": 3, "weight": 700, "lineHeight": 1.25, "use": "Desktop section heading and store h1", "provenance": "measured" },
+      { "px": 24, "rem": 2.4, "weight": 700, "lineHeight": "60px on a wrapping store h1 at 390px", "use": "Store h1 on a 390px viewport. Also one desktop heading-2 variant.", "provenance": "measured" },
+      { "px": 22, "rem": 2.2, "weight": 800, "lineHeight": 1, "use": "Product card price", "provenance": "measured" },
+      { "px": 20, "rem": 2, "weight": 700, "lineHeight": "25px", "use": "Homepage h2 at 390px", "provenance": "measured" },
+      { "px": 20, "rem": 2, "weight": 600, "lineHeight": 1, "use": "Checkout quantity buttons", "provenance": "measured" },
+      { "px": 19, "rem": 1.9, "weight": 800, "lineHeight": 1, "use": "Homepage search input", "provenance": "measured" },
+      { "px": 18, "rem": 1.8, "weight": 800, "lineHeight": "22px", "use": "Checkout \"My cart\" heading", "provenance": "measured" },
+      { "px": 18, "rem": 1.8, "weight": 700, "lineHeight": 1.25, "use": "One heading-3 on desktop", "provenance": "measured" },
+      { "px": 16, "rem": 1.6, "weight": 400, "lineHeight": 1.5, "use": "Body", "provenance": "measured" },
+      { "px": 16, "rem": 1.6, "weight": 600, "lineHeight": 1, "use": "Navigation links and some UI", "provenance": "measured" },
+      { "px": 16, "rem": 1.6, "weight": 700, "lineHeight": 1.5, "use": "Checkout trust heading", "provenance": "measured" },
+      { "px": 16, "rem": 1.6, "weight": 800, "lineHeight": "20px to 22.4px", "use": "Filter accordion titles, some links", "provenance": "measured" },
+      { "px": 15, "rem": 1.5, "weight": 800, "lineHeight": 1, "use": "Buttons (Proceed, Subscribe, Add to cart label)", "provenance": "measured" },
+      { "px": 14, "rem": 1.4, "weight": 600, "lineHeight": 1, "use": "Header account links, sort control, mobile filter button", "provenance": "measured" },
+      { "px": 14, "rem": 1.4, "weight": 800, "lineHeight": "20px", "use": "Checkout product title link, email field weight on the homepage footer", "provenance": "measured" },
+      { "px": 14, "rem": 1.4, "weight": 400, "lineHeight": 1.2, "use": "Sort option labels", "provenance": "measured" },
+      { "px": 12, "rem": 1.2, "weight": 800, "lineHeight": "12px or 18px", "use": "Card title, badge, region, \"From\"", "provenance": "measured" },
+      { "px": 12, "rem": 1.2, "weight": 600, "lineHeight": "18px", "use": "Checkout step labels and email field", "provenance": "measured" },
+      { "px": 12, "rem": 1.2, "weight": 400, "lineHeight": 1.5, "use": "Checkout summary rows", "provenance": "measured" },
+      { "px": 10, "rem": 1, "weight": 800, "lineHeight": 1, "use": "Platform line on a card", "provenance": "measured" }
+    ]
+  },
+  "layout": {
+    "contentMaxWidth": "1240px",
+    "contentPaddingInline": "20px",
+    "innerContentWidth": "1200px",
+    "checkoutFormMaxWidth": "1040px",
+    "checkoutFormPaddingInline": "5px",
+    "storeColumnsDesktop": "220px 960px",
+    "storeColumnGapDesktop": "20px",
+    "productGridDesktop": "225px 225px 225px 225px",
+    "productGridGapDesktop": "20px",
+    "productGridMobile": "350px single column",
+    "productGridGapMobile": "15px",
+    "headerHeightDesktop": "147px",
+    "headerHeightMobile": "56px",
+    "provenance": "measured"
+  },
+  "spacing": {
+    "scaleType": "custom",
+    "note": "Not a strict 4px or 8px grid. These values are the ones used often enough to treat as the scale. One-off layout sizes (card image heights, sidebar widths) are omitted.",
+    "px": [1, 2, 3, 4, 5, 7, 8, 10, 15, 20, 25, 30, 40, 50],
+    "provenance": "measured",
+    "section": {
+      "headingMargin": "10px 0 30px on the store h1; section h2 margin-bottom 30px",
+      "storeLayoutMarginBottom": "40px",
+      "homepageBlockMargins": "30px to 50px between blocks",
+      "provenance": "measured"
+    }
+  },
+  "radius": [
+    { "value": "0px", "use": "Buttons, inputs, product cards, checkout panels, search shell", "provenance": "measured" },
+    { "value": "5px", "use": "Highlighted nav link", "provenance": "measured" },
+    { "value": "6px", "use": "::before on the highlighted nav link", "provenance": "measured" },
+    { "value": "3px", "use": "Spans, seen on the store page", "provenance": "measured" },
+    { "value": "10px", "use": "Links, store page only", "provenance": "measured" },
+    { "value": "2px", "use": "Rare", "provenance": "measured" },
+    { "value": "50%", "use": "Circular spans. Checkout step discs look circular; their CSS background was transparent, so the disc is likely an SVG.", "provenance": "measured" }
+  ],
+  "border": [
+    { "value": "1px solid #ffffff", "use": "Search shell, secondary buttons, email subscribe field", "provenance": "measured" },
+    { "value": "1px solid #63e3c2", "use": "Product card", "provenance": "measured" },
+    { "value": "2px solid rgba(255, 255, 255, 0.7)", "use": "Spans, page-local", "provenance": "measured" },
+    { "value": "0", "use": "Primary yellow button", "provenance": "measured" }
+  ],
+  "shadow": [
+    { "value": "0 7px 15px 0 rgba(0, 0, 0, 0.2)", "use": "Elevation, seen on both pages", "provenance": "measured" },
+    { "value": "inset 0 1px 3px 0 #1f0a4d", "use": "Text inputs", "provenance": "measured" },
+    { "value": "0 -4px 20px 0 rgba(0, 0, 0, 0.7)", "use": "Homepage, upward shadow", "provenance": "measured" },
+    { "value": "2px 3px 0 #99001f", "use": "Hard offset, sale-like", "provenance": "measured" },
+    { "value": "0 3px 9px rgba(0, 0, 0, 0.4)", "use": "Soft elevation", "provenance": "measured" },
+    { "value": "0 0 15px 0 rgba(0, 0, 0, 0.3)", "use": "Soft elevation", "provenance": "measured" },
+    { "value": "0 0 15px 0 rgba(0, 0, 0, 0.4)", "use": "Soft elevation", "provenance": "measured" },
+    { "value": "-10px 0 10px -10px #4618ac", "use": "Carousel edge, matching the page color", "provenance": "measured" },
+    { "value": "10px 0 10px -10px #4618ac", "use": "Carousel edge, opposite side. From the stylesheet.", "provenance": "measured" }
+  ],
+  "motion": {
+    "durationsMs": [
+      { "ms": 150, "count": 514 },
+      { "ms": 250, "count": 216 },
+      { "ms": 300, "count": 47 },
+      { "ms": 100, "count": 21 },
+      { "ms": 120, "count": 15 },
+      { "ms": 200, "count": 3 }
+    ],
+    "easings": [
+      { "value": "ease-in-out", "count": 627 },
+      { "value": "ease", "count": 167 },
+      { "value": "ease-out", "count": 21 },
+      { "value": "linear", "count": 1 }
+    ],
+    "properties": ["background-color", "border-color", "color", "background", "transform", "opacity", "padding-bottom"],
+    "defaultUi": "background-color 0.15s ease-in-out, border-color 0.15s ease-in-out",
+    "namedAnimationsOnSampledPages": [],
+    "hoverColorsInCss": ["#fad318", "#ffffff", "#351183", "#f0a613", "rgba(0,0,0,.3)", "rgba(255,255,255,.4)"],
+    "provenance": "measured"
+  },
+  "focusAndDisabled": {
+    "focusOutlineDefault": "none, 3px, in the currentColor",
+    "focusCssSamples": [
+      "background: rgba(0, 0, 0, 0.3); color: #ffffff",
+      "color: #f0a613",
+      "background: #351183",
+      "background: #5825cc"
+    ],
+    "disabledCss": [
+      "opacity: 0.5; pointer-events: none; cursor: not-allowed",
+      "cursor: not-allowed; pointer-events: none",
+      "background-color: #4618ac"
+    ],
+    "provenance": "measured"
+  },
+  "stack": {
+    "ui": ["React", "React Router", "Emotion"],
+    "css": "Webpack-extracted stylesheets with hashed class names, served from static.eneba.games. Emotion is present (data-emotion on 10 nodes) and is not the main styling method.",
+    "icons": "Inline SVG. No icon font and no <use> sprite on the sampled pages.",
+    "notDetected": ["Tailwind", "styled-components", "CSS custom properties"],
+    "provenance": "measured",
+    "assets": {
+      "logo": "https://static.eneba.games/branding/v2/logoFull.svg",
+      "logoRenderedSize": "155x48",
+      "favicon": "https://static.eneba.games/favicon.ico"
+    }
+  }
+}

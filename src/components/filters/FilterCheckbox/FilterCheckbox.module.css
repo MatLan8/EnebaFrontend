@@ -1,0 +1,75 @@
+.label {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: var(--space-15);
+  position: relative;
+  margin: 0 0 var(--space-10);
+  color: var(--color-text);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-snug);
+  cursor: pointer;
+}
+
+.input {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  opacity: 0;
+}
+
+.box {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--color-text-faint);
+  border-radius: var(--radius-3);
+  background: transparent;
+  transition:
+    border-color var(--duration) var(--ease),
+    background var(--duration) var(--ease);
+}
+
+.box::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 11px;
+  height: 7px;
+  border-bottom: 2px solid transparent;
+  border-left: 2px solid transparent;
+  transform: rotate(-45deg);
+  transition: border-color var(--duration) var(--ease);
+}
+
+.label:hover .box::after {
+  border-color: rgba(220, 216, 230, 0.6);
+}
+
+.input:checked + .box {
+  border-color: var(--color-cta);
+  background: var(--color-cta);
+}
+
+.input:checked + .box::after,
+.label:hover .input:checked + .box::after {
+  border-color: var(--color-surface);
+}
+
+.input:focus-visible + .box {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.count {
+  color: var(--color-text-faint);
+}

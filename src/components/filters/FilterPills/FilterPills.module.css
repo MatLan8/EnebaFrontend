@@ -1,0 +1,117 @@
+.row {
+  margin-bottom: var(--space-15);
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-10);
+}
+
+.pillWrap {
+  position: relative;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-8) var(--space-15);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--color-text);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  transition: background var(--duration) var(--ease);
+}
+
+.pill:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.textPill {
+  cursor: default;
+}
+
+.textLabel {
+  font-weight: var(--font-weight-black);
+}
+
+.remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  color: var(--color-text);
+  font-size: var(--font-size-20);
+  line-height: 1;
+  transition: color var(--duration) var(--ease);
+}
+
+.remove:hover {
+  color: var(--color-cta);
+}
+
+.remove:focus,
+.remove:focus-visible {
+  outline: none;
+}
+
+.pill:focus,
+.pill:focus-visible,
+.clearAll:focus,
+.clearAll:focus-visible {
+  outline: none;
+}
+
+.chevron,
+.chevronOpen {
+  display: block;
+  width: 13px;
+  height: 10px;
+  transition: transform var(--duration) var(--ease);
+}
+
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.menu {
+  position: absolute;
+  top: calc(100% + var(--space-8));
+  left: 0;
+  z-index: 5;
+  width: 260px;
+  padding: var(--space-15) 0 var(--space-10);
+  background: var(--color-filter);
+  box-shadow: var(--shadow-raise);
+}
+
+.clear,
+.clearAll {
+  color: var(--color-cta);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-black);
+  line-height: 1;
+  transition: color var(--duration) var(--ease);
+}
+
+.clear {
+  display: block;
+  width: 100%;
+  margin-top: var(--space-5);
+  padding: var(--space-10) var(--space-20) 0;
+  text-align: center;
+}
+
+.clearAll {
+  background: transparent;
+}
+
+.clear:hover,
+.clearAll:hover {
+  color: var(--color-focus);
+}

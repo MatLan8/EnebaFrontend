@@ -1,0 +1,61 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-20);
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+  padding: var(--space-15) var(--layout-padding) var(--space-10);
+}
+
+.logoLink {
+  flex: none;
+}
+
+.logoLink:focus,
+.logoLink:focus-visible {
+  outline: none;
+}
+
+.logo {
+  display: block;
+  width: 155px;
+  height: 48px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-15);
+  margin-left: auto;
+}
+
+.cart,
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--color-text);
+}
+
+.cart {
+  transition: color var(--duration) var(--ease);
+}
+
+.cart:hover,
+.cart:focus-visible {
+  color: var(--color-cta);
+  outline: none;
+}
+
+.profile img {
+  width: 28px;
+  height: 28px;
+}
+
+.cart:focus,
+.profile:focus,
+.profile:focus-visible {
+  outline: none;
+}

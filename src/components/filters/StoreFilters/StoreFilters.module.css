@@ -1,0 +1,22 @@
+.filters {
+  width: 220px;
+}
+
+.priceRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  padding: 0 var(--space-20);
+}
+
+.priceRow > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.dash {
+  color: var(--color-text);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+}

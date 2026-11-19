@@ -1,6 +1,5 @@
-import { Link } from "react-router-dom";
 import { CheckCircleOutlineIcon } from "../../../icons/CheckCircleOutlineIcon";
-import { ROUTES } from "../../../routes/paths";
+import { BrandLogo } from "../../BrandLogo/BrandLogo";
 import styles from "./CheckoutHeader.module.css";
 
 const steps = ["Cart", "Payment", "Get your product"];
@@ -13,13 +12,7 @@ export function CheckoutHeader({ activeStep }: CheckoutHeaderProps) {
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <Link className={styles.logoLink} to={ROUTES.homepage} aria-label="Eneba">
-          <img
-            className={styles.logo}
-            src="https://static.eneba.games/branding/v2/logoFull.svg"
-            alt="Eneba"
-          />
-        </Link>
+        <BrandLogo className={styles.logo} linkClassName={styles.logoLink} />
         <ol className={styles.steps}>
           {steps.map((step, index) => {
             const number = index + 1;

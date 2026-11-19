@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
-import { Footer } from "../../footer/Footer";
-import { accountFooterColumns } from "../../footer/footerLinks";
+import { Footer } from "../../footer/Footer/Footer";
+import { accountFooterColumns } from "../../footer/Footer/footerLinks";
 import { AccountBreadcrumbs, type AccountBreadcrumb } from "../AccountBreadcrumbs/AccountBreadcrumbs";
 import { AccountHeader } from "../AccountHeader/AccountHeader";
 import { AccountNav } from "../AccountNav/AccountNav";

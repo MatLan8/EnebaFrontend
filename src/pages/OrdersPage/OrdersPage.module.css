@@ -20,7 +20,7 @@
 }
 
 .filters .reset:active {
-  color: var(--color-filter);
+  color: var(--color-surface-bright);
 }
 
 @media (max-width: 600px) {

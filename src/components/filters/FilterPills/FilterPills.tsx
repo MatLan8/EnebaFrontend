@@ -1,14 +1,9 @@
 import { useEffect, useRef, useState } from "react";
-import type { ProductFiltersResponse } from "../../../types/productFilters";
+import type { ProductFiltersResponse, StoreFilterValue } from "../../../types/productFilters";
 import { ChevronIcon } from "../../../icons/ChevronIcon";
 import { FilterOptionList } from "../FilterOptionList/FilterOptionList";
-import {
-  filterGroups,
-  groupOptions,
-  priceSelectionCount,
-  PriceFields,
-  type StoreFilterValue,
-} from "../StoreFilters/StoreFilters";
+import { PriceFields } from "../StoreFilters/StoreFilters";
+import { filterGroups, groupOptions, priceSelectionCount } from "../StoreFilters/storeFilterOptions";
 import styles from "./FilterPills.module.css";
 
 interface FilterPillsProps {

@@ -1,5 +1,5 @@
 .section {
-  background: var(--color-filter);
+  background: var(--color-surface-bright);
   padding-bottom: var(--space-20);
   border-bottom: 2px solid var(--color-page);
   transition: padding-bottom var(--duration) var(--ease);

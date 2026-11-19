@@ -2,7 +2,8 @@ import { useState } from "react";
 import type { FilterOption } from "../../../types/productFilters";
 import { FilterCheckbox } from "../FilterCheckbox/FilterCheckbox";
 import { FilterInput } from "../FilterInput/FilterInput";
-import { optionLabel, type FilterGroup } from "../filterLabels";
+import type { FilterGroup } from "../../../types/productFilters";
+import { optionLabel } from "../filterLabels";
 import styles from "./FilterOptionList.module.css";
 
 interface FilterOptionListProps {

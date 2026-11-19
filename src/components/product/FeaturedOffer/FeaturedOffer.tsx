@@ -1,14 +1,8 @@
-import { useState } from "react";
-import { createPortal } from "react-dom";
-import { useNavigate } from "react-router-dom";
-import { readApiErrorMessage } from "../../../api/readApiErrors";
-import { useAddToCart } from "../../../api/useAddToCart";
+import { useCartActions } from "../../../hooks/useCartActions";
 import { ErrorBox } from "../../ErrorBox/ErrorBox";
-import { AddedToCartModal } from "../../cart/AddedToCartModal";
 import { PrimaryButton } from "../../buttons/PrimaryButton";
 import { SecondaryButton } from "../../buttons/SecondaryButton";
 import { CartIcon } from "../../../icons/CartIcon";
-import { ROUTES } from "../../../routes/paths";
 import type { Offer } from "../../../types/productDetail";
 import { formatCents } from "../../../utils/formatCents";
 import styles from "./FeaturedOffer.module.css";
@@ -32,29 +26,8 @@ export function FeaturedOffer({
   nextOfferCurrency,
   onShowOffers,
 }: FeaturedOfferProps) {
-  const navigate = useNavigate();
-  const addToCart = useAddToCart();
-  const [modalOpen, setModalOpen] = useState(false);
-  const [buyError, setBuyError] = useState<string | null>(null);
+  const { isPending, addAndOpen, buyNow, buyError, modal } = useCartActions(offer.id);
   const hasDiscount = offer.price.discountPercent !== null;
-
-  const addAndOpen = () => {
-    setBuyError(null);
-    setModalOpen(true);
-    addToCart.mutate(offer.id);
-  };
-
-  const buyNow = async () => {
-    setBuyError(null);
-    try {
-      await addToCart.mutateAsync(offer.id);
-      navigate(ROUTES.checkout);
-    } catch (error) {
-      setBuyError(readApiErrorMessage(error));
-    }
-  };
-
-  const modalStatus = addToCart.isPending ? "pending" : addToCart.isError ? "error" : "success";
 
   return (
     <section className={styles.card}>
@@ -70,12 +43,12 @@ export function FeaturedOffer({
           <p className={styles.amount}>{formatCents(offer.price.cents, offer.price.currency)}</p>
         </div>
         <div className={styles.actions}>
-          <PrimaryButton disabled={addToCart.isPending} onClick={buyNow}>
+          <PrimaryButton disabled={isPending} onClick={buyNow}>
             Buy now
           </PrimaryButton>
           <SecondaryButton
             aria-label="Add featured offer to cart"
-            disabled={addToCart.isPending}
+            disabled={isPending}
             onClick={addAndOpen}
           >
             <span aria-hidden="true">+</span>
@@ -90,16 +63,7 @@ export function FeaturedOffer({
           {formatCents(nextOfferCents, nextOfferCurrency)}
         </button>
       )}
-      {modalOpen &&
-        createPortal(
-          <AddedToCartModal
-            status={modalStatus}
-            itemCount={addToCart.data?.itemCount}
-            errorMessage={addToCart.isError ? readApiErrorMessage(addToCart.error) : undefined}
-            onClose={() => setModalOpen(false)}
-          />,
-          document.body,
-        )}
+      {modal}
     </section>
   );
 }

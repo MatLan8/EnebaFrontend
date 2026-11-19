@@ -1,5 +1,5 @@
-import { readApiErrors } from "../../api/readApiErrors";
-import { useGetHome } from "../../api/useGetHome";
+import { readApiErrors } from "../../api/core/readApiErrors";
+import { useGetHome } from "../../api/home/useGetHome";
 import { ProductCarouselBlock } from "../../components/home/ProductCarouselBlock/ProductCarouselBlock";
 import { PageLoader } from "../../components/PageLoader/PageLoader";
 import { storePath } from "../../routes/paths";

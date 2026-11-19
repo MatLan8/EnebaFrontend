@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useGetOrders } from "../../api/useGetOrders";
+import { useGetOrders } from "../../api/orders/useGetOrders";
 import { AccountLayout } from "../../components/account/AccountLayout/AccountLayout";
 import { AccountQueryState } from "../../components/account/AccountQueryState/AccountQueryState";
-import { LinkButton } from "../../components/buttons/LinkButton";
+import { LinkButton } from "../../components/buttons/LinkButton/LinkButton";
 import { TextField } from "../../components/inputs/TextField/TextField";
 import { OrdersTable } from "../../components/orders/OrdersTable/OrdersTable";
-import { Pagination } from "../../components/store/Pagination";
+import { Pagination } from "../../components/store/Pagination/Pagination";
 import { useDebouncedValue } from "../../hooks/useDebouncedValue";
 import styles from "./OrdersPage.module.css";
 

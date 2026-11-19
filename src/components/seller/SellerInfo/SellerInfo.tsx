@@ -1,13 +1,8 @@
-import { StarIcon } from "../../../icons/StartIcon";
-import { VerifiedSealIcon } from "../../../icons/VerificationIcon";
+import { StarIcon } from "../../../icons/StarIcon";
+import { VerifiedSealIcon } from "../../../icons/VerifiedSealIcon";
 import { sellerRatingLabel } from "../../../utils/sellerRating";
+import type { SellerSummary } from "../../../types/seller";
 import styles from "./SellerInfo.module.css";
-
-export interface SellerSummary {
-  name: string;
-  logoUrl: string | null;
-  rating: number;
-}
 
 interface SellerInfoProps {
   seller: SellerSummary;

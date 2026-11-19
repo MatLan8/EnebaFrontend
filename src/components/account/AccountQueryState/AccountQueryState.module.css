@@ -5,9 +5,9 @@
 }
 
 .loading .spinner {
-  border-right-color: var(--color-table-header);
-  border-bottom-color: var(--color-table-header);
-  border-left-color: var(--color-table-header);
+  border-right-color: var(--color-manage-surface);
+  border-bottom-color: var(--color-manage-surface);
+  border-left-color: var(--color-manage-surface);
 }
 
 .message,

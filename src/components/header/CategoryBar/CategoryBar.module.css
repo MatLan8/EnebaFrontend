@@ -36,7 +36,7 @@
   align-items: center;
   height: 100%;
   padding: 0 var(--space-10);
-  color: var(--color-text-nav);
+  color: var(--color-text-light);
   font-size: 1.7rem;
   font-weight: var(--font-weight-medium);
   line-height: var(--line-height-tight);

@@ -16,7 +16,7 @@
 }
 
 .options::-webkit-scrollbar-track {
-  background: var(--color-filter);
+  background: var(--color-surface-bright);
 }
 
 .options::-webkit-scrollbar-thumb {

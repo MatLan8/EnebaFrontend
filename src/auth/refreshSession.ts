@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_BASE, API_ROUTES } from "../api/endpoints";
+import { API_BASE, API_ROUTES } from "../api/core/endpoints";
 import type { AuthResponse } from "../types/auth";
 import { setAccessToken } from "./accessToken";
 import { writeLoggedIn } from "./session";

@@ -29,3 +29,15 @@ export interface GetProductsResponse {
   total: number;
   totalPages: number;
 }
+
+export interface ProductListParams {
+  types: string[];
+  platforms: string[];
+  regions: string[];
+  genres: string[];
+  minPrice?: number;
+  maxPrice?: number;
+  sort: string;
+  page: number;
+  q?: string;
+}

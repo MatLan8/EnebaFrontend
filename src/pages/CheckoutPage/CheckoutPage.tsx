@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { readApiErrors } from "../../api/readApiErrors";
-import { useCheckout } from "../../api/useCheckout";
-import { useGetCart } from "../../api/useGetCart";
+import { readApiErrors } from "../../api/core/readApiErrors";
+import { useCheckout } from "../../api/checkout/useCheckout";
+import { useGetCart } from "../../api/cart/useGetCart";
 import { getAccessToken } from "../../auth/accessToken";
 import { PrimaryButton } from "../../components/buttons/PrimaryButton";
 import { CheckoutCartItem } from "../../components/checkout/CheckoutCartItem/CheckoutCartItem";
@@ -11,6 +11,7 @@ import { LoginRequiredModal } from "../../components/checkout/LoginRequiredModal
 import { ErrorBox } from "../../components/ErrorBox/ErrorBox";
 import { InfoCircleIcon } from "../../icons/InfoCircleIcon";
 import { formatCents } from "../../utils/formatCents";
+import { ButtonSpinner } from "../../components/buttons/ButtonSpinner/ButtonSpinner";
 import styles from "./CheckoutPage.module.css";
 
 export function CheckoutPage() {
@@ -61,7 +62,7 @@ export function CheckoutPage() {
             <aside className={`${styles.panel} ${styles.summary}`}>
               <h2 className={styles.heading}>Summary</h2>
               <PrimaryButton disabled={checkout.isPending} onClick={proceed}>
-                {checkout.isPending && <span className={styles.spinner} aria-hidden="true" />}
+                {checkout.isPending && <ButtonSpinner />}
                 Proceed to checkout
               </PrimaryButton>
               <div className={styles.row}>

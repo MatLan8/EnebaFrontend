@@ -86,7 +86,7 @@
   z-index: 5;
   width: 260px;
   padding: var(--space-15) 0 var(--space-10);
-  background: var(--color-filter);
+  background: var(--color-surface-bright);
   box-shadow: var(--shadow-raise);
 }
 

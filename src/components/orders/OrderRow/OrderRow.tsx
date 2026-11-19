@@ -4,7 +4,7 @@ import type { OrderListItem } from "../../../types/order";
 import { formatCents } from "../../../utils/formatCents";
 import { formatDateTime } from "../../../utils/formatDateTime";
 import { AccountTableCell, AccountTableRow } from "../../account/AccountTable/AccountTable";
-import { LinkButton } from "../../buttons/LinkButton";
+import { LinkButton } from "../../buttons/LinkButton/LinkButton";
 import { OrderStatusLabel } from "../OrderStatusLabel/OrderStatusLabel";
 
 const orderTitle = (order: OrderListItem) => {

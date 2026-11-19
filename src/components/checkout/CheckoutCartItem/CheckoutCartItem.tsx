@@ -1,6 +1,6 @@
-import { useRemoveCartItem } from "../../../api/useRemoveCartItem";
-import { useUpdateCartItem } from "../../../api/useUpdateCartItem";
-import { TrashIcon } from "../../../icons/GarbageIcon";
+import { useRemoveCartItem } from "../../../api/cart/useRemoveCartItem";
+import { useUpdateCartItem } from "../../../api/cart/useUpdateCartItem";
+import { TrashIcon } from "../../../icons/TrashIcon";
 import type { CartItem } from "../../../types/cart";
 import { formatCents } from "../../../utils/formatCents";
 import styles from "./CheckoutCartItem.module.css";

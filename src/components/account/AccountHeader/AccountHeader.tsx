@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useGetMe } from "../../../api/useGetMe";
+import { useNavigate } from "react-router-dom";
+import { useGetMe } from "../../../api/users/useGetMe";
 import { EnebaIcon } from "../../../icons/EnebaIcon";
 import { LogOutIcon } from "../../../icons/LogOutIcon";
 import { ROUTES } from "../../../routes/paths";
-import { ProfilePanel, type ProfilePanelItem } from "../../profile/ProfilePanel";
+import { ProfilePanel, type ProfilePanelItem } from "../../profile/ProfilePanel/ProfilePanel";
+import { BrandLogo } from "../../BrandLogo/BrandLogo";
 import styles from "./AccountHeader.module.css";
 
 export function AccountHeader() {
@@ -23,13 +24,7 @@ export function AccountHeader() {
 
   return (
     <header className={styles.header}>
-      <Link className={styles.logoLink} to={ROUTES.homepage} aria-label="Eneba">
-        <img
-          className={styles.logo}
-          src="https://static.eneba.games/branding/v2/logoFull.svg"
-          alt="Eneba"
-        />
-      </Link>
+      <BrandLogo className={styles.logo} linkClassName={styles.logoLink} />
       <div className={styles.actions}>
         {user.data && <span className={styles.email}>{user.data.email}</span>}
         <div className={profileOpen ? `${styles.profileWrap} ${styles.profileOpen}` : styles.profileWrap}>

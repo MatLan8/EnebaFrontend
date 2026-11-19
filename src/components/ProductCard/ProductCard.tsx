@@ -1,41 +1,29 @@
-import { useState, type MouseEvent } from "react";
-import { createPortal } from "react-dom";
+import type { MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
-import { readApiErrorMessage } from "../../api/readApiErrors";
-import { useAddToCart } from "../../api/useAddToCart";
+import { useCartActions } from "../../hooks/useCartActions";
 import { productPath } from "../../routes/paths";
+import type { ProductListItem } from "../../types/product";
+import { formatCents } from "../../utils/formatCents";
 import { PrimaryButton } from "../buttons/PrimaryButton";
 import { SecondaryButton } from "../buttons/SecondaryButton";
-import type { ProductListItem } from "../../types/product";
-import { AddedToCartModal } from "../cart/AddedToCartModal";
 import styles from "./ProductCard.module.css";
 
 interface ProductCardProps {
   product: ProductListItem;
 }
 
-const formatCents = (cents: number, currency: string) =>
-  (cents / 100).toLocaleString(undefined, {
-    style: "currency",
-    currency,
-  });
-
 export function ProductCard({ product }: ProductCardProps) {
   const navigate = useNavigate();
   const discountPercent = product.price.discountPercent;
   const hasDiscount = discountPercent !== null;
-  const addToCart = useAddToCart();
-  const [modalOpen, setModalOpen] = useState(false);
+  const { isPending, addAndOpen, modal } = useCartActions(product.cheapestOfferId);
 
   const openProduct = () => navigate(productPath(product.slug));
 
   const handleAddToCart = (event: MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
-    setModalOpen(true);
-    addToCart.mutate(product.cheapestOfferId);
+    addAndOpen();
   };
-
-  const modalStatus = addToCart.isPending ? "pending" : addToCart.isError ? "error" : "success";
 
   return (
     <article className={styles.card} onClick={openProduct}>
@@ -74,23 +62,14 @@ export function ProductCard({ product }: ProductCardProps) {
             )}
           </p>
           <div className={styles.actions}>
-            <PrimaryButton disabled={addToCart.isPending} onClick={handleAddToCart}>
+            <PrimaryButton disabled={isPending} onClick={handleAddToCart}>
               Add to cart
             </PrimaryButton>
             <SecondaryButton>View offers</SecondaryButton>
           </div>
         </div>
       </div>
-      {modalOpen &&
-        createPortal(
-          <AddedToCartModal
-            status={modalStatus}
-            itemCount={addToCart.data?.itemCount}
-            errorMessage={addToCart.isError ? readApiErrorMessage(addToCart.error) : undefined}
-            onClose={() => setModalOpen(false)}
-          />,
-          document.body,
-        )}
+      {modal}
     </article>
   );
 }

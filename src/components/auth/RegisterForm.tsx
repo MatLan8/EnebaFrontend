@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { readApiErrors } from "../../api/readApiErrors";
-import { useRegister } from "../../api/useRegister";
+import { readApiErrors } from "../../api/core/readApiErrors";
+import { useRegister } from "../../api/auth/useRegister";
 import { setAccessToken } from "../../auth/accessToken";
 import { writeLoggedIn } from "../../auth/session";
 import {
@@ -13,6 +13,7 @@ import {
 import { ROUTES } from "../../routes/paths";
 import { PrimaryButton } from "../buttons/PrimaryButton";
 import { TextField } from "../inputs/TextField/TextField";
+import { ButtonSpinner } from "../buttons/ButtonSpinner/ButtonSpinner";
 import styles from "./AuthForm.module.css";
 import { ErrorBox } from "../ErrorBox/ErrorBox";
 
@@ -102,7 +103,7 @@ export function RegisterForm() {
       <ErrorBox className={styles.errors} messages={errors} />
       <PrimaryButton disabled={register.isPending} onClick={submit}>
         {register.isPending && (
-          <span className={styles.spinner} aria-hidden="true" />
+          <ButtonSpinner />
         )}
         Register
       </PrimaryButton>

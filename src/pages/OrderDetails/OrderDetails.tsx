@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useGetOrder } from "../../api/useGetOrder";
+import { useGetOrder } from "../../api/orders/useGetOrder";
 import { AccountCard } from "../../components/account/AccountCard/AccountCard";
 import { AccountLayout } from "../../components/account/AccountLayout/AccountLayout";
 import { AccountQueryState } from "../../components/account/AccountQueryState/AccountQueryState";

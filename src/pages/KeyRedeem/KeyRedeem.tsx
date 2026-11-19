@@ -2,15 +2,15 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import { useLocation, useSearchParams } from "react-router-dom";
 import axios from "axios";
-import { readApiErrors } from "../../api/readApiErrors";
-import { useGetOrderKeys } from "../../api/useGetOrderKeys";
+import { readApiErrors } from "../../api/core/readApiErrors";
+import { useGetOrderKeys } from "../../api/orders/useGetOrderKeys";
 import type { ApiError } from "../../types/apiError";
 import { SecondaryButton } from "../../components/buttons/SecondaryButton";
 import { CheckoutHeader } from "../../components/checkout/CheckoutHeader/CheckoutHeader";
 import { LoginRequiredModal } from "../../components/checkout/LoginRequiredModal/LoginRequiredModal";
 import { ProductKeyCard } from "../../components/keys/ProductKeyCard/ProductKeyCard";
 import { Spinner } from "../../components/Spinner/Spinner";
-import { AlertCircleIcon } from "../../icons/AlertCircle";
+import { AlertCircleIcon } from "../../icons/AlertCircleIcon";
 import { InfoCircleIcon } from "../../icons/InfoCircleIcon";
 import styles from "./KeyRedeem.module.css";
 

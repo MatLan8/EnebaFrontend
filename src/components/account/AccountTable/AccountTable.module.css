@@ -13,7 +13,7 @@
 
 .head {
   padding: var(--space-10) var(--space-15);
-  background: var(--color-table-header);
+  background: var(--color-manage-surface);
   color: var(--color-manage-text);
   font-size: var(--font-size-10);
   font-weight: var(--font-weight-black);

@@ -1,59 +1,14 @@
-import type { ProductFiltersResponse } from "../../../types/productFilters";
+import type { ProductFiltersResponse, StoreFilterValue } from "../../../types/productFilters";
 import { FilterInput } from "../FilterInput/FilterInput";
 import { FilterOptionList } from "../FilterOptionList/FilterOptionList";
 import { FilterSection } from "../FilterSection/FilterSection";
-import type { FilterGroup } from "../filterLabels";
+import { filterGroups, groupOptions, priceSelectionCount } from "./storeFilterOptions";
 import styles from "./StoreFilters.module.css";
-
-export interface StoreFilterValue {
-  minPrice: string;
-  maxPrice: string;
-  types: string[];
-  platforms: string[];
-  regions: string[];
-  genres: string[];
-}
-
-export const emptyStoreFilters: StoreFilterValue = {
-  minPrice: "",
-  maxPrice: "",
-  types: [],
-  platforms: [],
-  regions: [],
-  genres: [],
-};
-
-export interface FilterGroupConfig {
-  id: "types" | "platforms" | "genres" | "regions";
-  title: string;
-  group: FilterGroup;
-}
-
-export const filterGroups: FilterGroupConfig[] = [
-  { id: "types", title: "Product type", group: "type" },
-  { id: "platforms", title: "Platforms", group: "platform" },
-  { id: "genres", title: "Genres", group: "genre" },
-  { id: "regions", title: "Regions", group: "region" },
-];
-
-export const priceSelectionCount = (value: StoreFilterValue) =>
-  Number(value.minPrice.trim() !== "") + Number(value.maxPrice.trim() !== "");
 
 interface StoreFiltersProps {
   filters: ProductFiltersResponse | undefined;
   value: StoreFilterValue;
   onChange: (value: StoreFilterValue) => void;
-}
-
-export function groupOptions(
-  filters: ProductFiltersResponse | undefined,
-  group: FilterGroup,
-) {
-  if (!filters) return [];
-  if (group === "type") return filters.types;
-  if (group === "platform") return filters.platforms;
-  if (group === "genre") return filters.genres;
-  return filters.regions;
 }
 
 const pricePattern = /^(\d+(\.\d{0,2})?)?$/;

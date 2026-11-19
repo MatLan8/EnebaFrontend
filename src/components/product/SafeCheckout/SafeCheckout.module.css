@@ -1,6 +1,6 @@
 .card {
   padding: var(--space-15) var(--space-20);
-  background: var(--color-filter);
+  background: var(--color-surface-bright);
 }
 
 .title {

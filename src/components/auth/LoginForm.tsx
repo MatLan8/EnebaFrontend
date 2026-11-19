@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { readApiErrors } from "../../api/readApiErrors";
-import { useLogin } from "../../api/useLogin";
+import { readApiErrors } from "../../api/core/readApiErrors";
+import { useLogin } from "../../api/auth/useLogin";
 import { setAccessToken } from "../../auth/accessToken";
 import { writeLoggedIn } from "../../auth/session";
 import {
@@ -12,6 +12,7 @@ import {
 import { ROUTES } from "../../routes/paths";
 import { PrimaryButton } from "../buttons/PrimaryButton";
 import { TextField } from "../inputs/TextField/TextField";
+import { ButtonSpinner } from "../buttons/ButtonSpinner/ButtonSpinner";
 import styles from "./AuthForm.module.css";
 import { ErrorBox } from "../ErrorBox/ErrorBox";
 
@@ -81,7 +82,7 @@ export function LoginForm() {
       <ErrorBox className={styles.errors} messages={errors} />
       <PrimaryButton disabled={login.isPending} onClick={submit}>
         {login.isPending && (
-          <span className={styles.spinner} aria-hidden="true" />
+          <ButtonSpinner />
         )}
         Log in
       </PrimaryButton>

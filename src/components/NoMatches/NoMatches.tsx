@@ -1,4 +1,4 @@
-import { ConfusedGhostIcon } from "../../icons/GhostIcon";
+import { ConfusedGhostIcon } from "../../icons/ConfusedGhostIcon";
 import { PrimaryButton } from "../buttons/PrimaryButton";
 import styles from "./NoMatches.module.css";
 

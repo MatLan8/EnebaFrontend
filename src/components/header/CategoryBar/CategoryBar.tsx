@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useGetProductFilters } from "../../../api/useGetProductFilters";
+import { useGetProductFilters } from "../../../api/products/useGetProductFilters";
 import type { ProductType } from "../../../constants/productType";
 import { storePath } from "../../../routes/paths";
 import { typeLabels } from "../../filters/filterLabels";

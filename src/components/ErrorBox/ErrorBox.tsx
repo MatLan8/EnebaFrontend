@@ -1,4 +1,4 @@
-import { AlertCircleIcon } from "../../icons/AlertCircle";
+import { AlertCircleIcon } from "../../icons/AlertCircleIcon";
 import styles from "./ErrorBox.module.css";
 
 interface ErrorBoxProps {

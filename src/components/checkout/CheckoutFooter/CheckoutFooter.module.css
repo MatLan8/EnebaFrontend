@@ -52,7 +52,7 @@
 }
 
 .link {
-  color: var(--color-text-nav);
+  color: var(--color-text-light);
   font-size: inherit;
   font-weight: var(--font-weight-medium);
   line-height: inherit;

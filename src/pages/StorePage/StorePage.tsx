@@ -1,10 +1,7 @@
 import { useMemo, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useGetProductFilters } from "../../api/useGetProductFilters";
-import {
-  useGetProducts,
-  type ProductListParams,
-} from "../../api/useGetProducts";
+import { useGetProductFilters } from "../../api/products/useGetProductFilters";
+import { useGetProducts } from "../../api/products/useGetProducts";
 import { ProductSort } from "../../constants/productSort";
 import { ProductType } from "../../constants/productType";
 import { ProductCard } from "../../components/ProductCard/ProductCard";
@@ -12,13 +9,12 @@ import { NoMatches } from "../../components/NoMatches/NoMatches";
 import { PageLoader } from "../../components/PageLoader/PageLoader";
 import { ROUTES } from "../../routes/paths";
 import { FilterPills } from "../../components/filters/FilterPills/FilterPills";
-import {
-  emptyStoreFilters,
-  StoreFilters,
-  type StoreFilterValue,
-} from "../../components/filters/StoreFilters/StoreFilters";
-import { Pagination } from "../../components/store/Pagination";
-import { ProductSortMenu } from "../../components/store/ProductSortMenu";
+import { StoreFilters } from "../../components/filters/StoreFilters/StoreFilters";
+import { emptyStoreFilters } from "../../components/filters/StoreFilters/storeFilterOptions";
+import type { ProductListParams } from "../../types/product";
+import type { StoreFilterValue } from "../../types/productFilters";
+import { Pagination } from "../../components/store/Pagination/Pagination";
+import { ProductSortMenu } from "../../components/store/ProductSortMenu/ProductSortMenu";
 import { useDebouncedValue } from "../../hooks/useDebouncedValue";
 import styles from "./StorePage.module.css";
 

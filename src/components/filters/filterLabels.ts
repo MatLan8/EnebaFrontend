@@ -1,8 +1,6 @@
 import type { ProductType } from "../../constants/productType";
 import { regionNames, type Region } from "../../constants/region";
-import type { FilterOption } from "../../types/productFilters";
-
-export type FilterGroup = "type" | "platform" | "region" | "genre";
+import type { FilterGroup, FilterOption } from "../../types/productFilters";
 
 export const typeLabels: Record<ProductType, string> = {
   game: "Game",

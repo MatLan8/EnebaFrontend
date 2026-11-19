@@ -182,6 +182,6 @@
 }
 
 .metaValue {
-  color: var(--color-text-nav);
+  color: var(--color-text-light);
   font-weight: var(--font-weight-regular);
 }

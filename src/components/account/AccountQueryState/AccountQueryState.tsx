@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import axios from "axios";
-import { readApiErrors } from "../../../api/readApiErrors";
+import { readApiErrors } from "../../../api/core/readApiErrors";
 import { LoginRequiredModal } from "../../checkout/LoginRequiredModal/LoginRequiredModal";
 import { Spinner } from "../../Spinner/Spinner";
 import styles from "./AccountQueryState.module.css";

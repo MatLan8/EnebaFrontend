@@ -15,3 +15,20 @@ export interface ProductFiltersResponse {
   regions: FilterOption[];
   genres: LabeledFilterOption[];
 }
+
+export type FilterGroup = "type" | "platform" | "region" | "genre";
+
+export interface FilterGroupConfig {
+  id: "types" | "platforms" | "genres" | "regions";
+  title: string;
+  group: FilterGroup;
+}
+
+export interface StoreFilterValue {
+  minPrice: string;
+  maxPrice: string;
+  types: string[];
+  platforms: string[];
+  regions: string[];
+  genres: string[];
+}

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useGetProductSuggestions } from "../../../api/useGetProductSuggestions";
+import { useGetProductSuggestions } from "../../../api/products/useGetProductSuggestions";
 import type { ProductSuggestion } from "../../../types/productSuggestions";
-import { HistoryClockIcon } from "../../../icons/HistoryIcon";
+import { HistoryClockIcon } from "../../../icons/HistoryClockIcon";
 import { SearchIcon } from "../../../icons/SearchIcon";
 import { useDebouncedValue } from "../../../hooks/useDebouncedValue";
 import { productPath, ROUTES } from "../../../routes/paths";

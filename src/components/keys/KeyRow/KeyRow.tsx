@@ -4,7 +4,7 @@ import type { KeyListItem } from "../../../types/keys";
 import { formatCents } from "../../../utils/formatCents";
 import { formatDate } from "../../../utils/formatDateTime";
 import { AccountTableCell, AccountTableRow } from "../../account/AccountTable/AccountTable";
-import { LinkButton } from "../../buttons/LinkButton";
+import { LinkButton } from "../../buttons/LinkButton/LinkButton";
 import styles from "./KeyRow.module.css";
 
 interface KeyRowProps {

@@ -1,7 +1,6 @@
-import { Link } from "react-router-dom";
 import { LoginForm } from "../../components/auth/LoginForm";
 import { RegisterForm } from "../../components/auth/RegisterForm";
-import { ROUTES } from "../../routes/paths";
+import { BrandLogo } from "../../components/BrandLogo/BrandLogo";
 import styles from "./AuthPage.module.css";
 
 interface AuthPageProps {
@@ -11,13 +10,7 @@ interface AuthPageProps {
 export function AuthPage({ mode }: AuthPageProps) {
   return (
     <div className={styles.page}>
-      <Link className={styles.logoLink} to={ROUTES.homepage} aria-label="Eneba">
-        <img
-          className={styles.logo}
-          src="https://static.eneba.games/branding/v2/logoFull.svg"
-          alt="Eneba"
-        />
-      </Link>
+      <BrandLogo className={styles.logo} linkClassName={styles.logoLink} />
       <div className={styles.main}>
         <h1 className={styles.greeting}>
           Hi!

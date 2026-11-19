@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useGetKeys } from "../../api/useGetKeys";
+import { useGetKeys } from "../../api/keys/useGetKeys";
 import { AccountLayout } from "../../components/account/AccountLayout/AccountLayout";
 import { AccountQueryState } from "../../components/account/AccountQueryState/AccountQueryState";
 import { TextField } from "../../components/inputs/TextField/TextField";
 import { KeysTable } from "../../components/keys/KeysTable/KeysTable";
-import { Pagination } from "../../components/store/Pagination";
+import { Pagination } from "../../components/store/Pagination/Pagination";
 import { useDebouncedValue } from "../../hooks/useDebouncedValue";
 import styles from "./KeysLibrary.module.css";
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { useGetProduct } from "../../api/useGetProduct";
+import { useGetProduct } from "../../api/products/useGetProduct";
 import { SecondaryButton } from "../../components/buttons/SecondaryButton";
 import { PageLoader } from "../../components/PageLoader/PageLoader";
 import { FeaturedOffer } from "../../components/product/FeaturedOffer/FeaturedOffer";

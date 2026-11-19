@@ -150,3 +150,7 @@
   flex-direction: column;
   gap: var(--space-10);
 }
+
+.checkoutError {
+  margin-top: var(--space-10);
+}

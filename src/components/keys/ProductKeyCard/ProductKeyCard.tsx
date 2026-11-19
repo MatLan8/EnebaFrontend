@@ -1,8 +1,10 @@
 import { useEffect, useState, type ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
 import { regionNames } from "../../../constants/region";
 import { CopyIcon } from "../../../icons/CopyIcon";
 import { GlobeVerifiedIcon } from "../../../icons/GlobeVerifiedIcon";
 import { KeyIcon } from "../../../icons/KeyIcon";
+import { ROUTES } from "../../../routes/paths";
 import type { OrderKey } from "../../../types/orderKeys";
 import { SecondaryButton } from "../../buttons/SecondaryButton";
 import { SellerInfo } from "../../seller/SellerInfo/SellerInfo";
@@ -36,6 +38,7 @@ interface ProductKeyCardProps {
 }
 
 export function ProductKeyCard({ orderKey, id }: ProductKeyCardProps) {
+  const navigate = useNavigate();
   const { product, seller, code } = orderKey;
   const [copyState, setCopyState] = useState<CopyState>("idle");
 
@@ -98,7 +101,9 @@ export function ProductKeyCard({ orderKey, id }: ProductKeyCardProps) {
           <p className={styles.libraryText}>
             Don’t want to use it now? Don’t worry. You can always find the code in your Library!
           </p>
-          <SecondaryButton className={styles.libraryButton}>My library</SecondaryButton>
+          <SecondaryButton className={styles.libraryButton} onClick={() => navigate(ROUTES.keysLibrary)}>
+            My library
+          </SecondaryButton>
         </div>
       </div>
 

@@ -1,10 +1,16 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
+import { readApiErrorMessage } from "../../api/readApiErrors";
+import { useCheckout } from "../../api/useCheckout";
 import { useGetCart } from "../../api/useGetCart";
+import { getAccessToken } from "../../auth/accessToken";
 import { InfoCircleIcon } from "../../icons/InfoCircleIcon";
 import { ROUTES } from "../../routes/paths";
 import { PrimaryButton } from "../buttons/PrimaryButton";
 import { SecondaryButton } from "../buttons/SecondaryButton";
+import { LoginRequiredModal } from "../checkout/LoginRequiredModal/LoginRequiredModal";
+import { ErrorBox } from "../ErrorBox/ErrorBox";
 import { formatCents } from "../../utils/formatCents";
 import { CartItemCard } from "./CartItemCard";
 import styles from "./CartPanel.module.css";
@@ -17,16 +23,36 @@ export function CartPanel({ onClose }: CartPanelProps) {
   const cart = useGetCart(true);
   const navigate = useNavigate();
   const panelRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const checkout = useCheckout();
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
 
   const viewCart = () => {
     onClose();
     navigate(ROUTES.checkout);
   };
 
+  const checkoutNow = async () => {
+    if (!getAccessToken()) {
+      setLoginOpen(true);
+      return;
+    }
+
+    setCheckoutError(null);
+    try {
+      const result = await checkout.mutateAsync();
+      window.location.href = result.checkoutUrl;
+    } catch (error) {
+      setCheckoutError(readApiErrorMessage(error));
+    }
+  };
+
   useEffect(() => {
     const close = (event: MouseEvent) => {
       const target = event.target as Element;
       if (panelRef.current?.contains(target)) return;
+      if (modalRef.current?.contains(target)) return;
       if (target.closest("[data-cart-toggle]")) return;
       onClose();
     };
@@ -75,12 +101,22 @@ export function CartPanel({ onClose }: CartPanelProps) {
               </div>
               <div className={styles.actions}>
                 <PrimaryButton onClick={viewCart}>View cart</PrimaryButton>
-                <SecondaryButton>Checkout now</SecondaryButton>
+                <SecondaryButton disabled={checkout.isPending} onClick={checkoutNow}>
+                  Checkout now
+                </SecondaryButton>
               </div>
+              {checkoutError && <ErrorBox className={styles.checkoutError} messages={[checkoutError]} fit />}
             </div>
           </>
         )}
       </div>
+      {loginOpen &&
+        createPortal(
+          <div ref={modalRef}>
+            <LoginRequiredModal onClose={() => setLoginOpen(false)} />
+          </div>,
+          document.body,
+        )}
     </>
   );
 }

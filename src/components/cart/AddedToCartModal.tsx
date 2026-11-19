@@ -4,6 +4,7 @@ import { CartSuccessIcon } from "../../icons/CartSuccessIcon";
 import { ROUTES } from "../../routes/paths";
 import { PrimaryButton } from "../buttons/PrimaryButton";
 import { SecondaryButton } from "../buttons/SecondaryButton";
+import { Spinner } from "../Spinner/Spinner";
 import styles from "./AddedToCartModal.module.css";
 
 interface AddedToCartModalProps {
@@ -46,7 +47,7 @@ export function AddedToCartModal({ status, itemCount = 0, onClose }: AddedToCart
         <h2 id="added-to-cart-title" className={styles.title}>
           {title}
         </h2>
-        {status === "pending" && <span className={styles.spinner} aria-hidden="true" />}
+        {status === "pending" && <Spinner className={styles.spinner} />}
         {status === "success" && (
           <p className={styles.text}>
             You have{" "}

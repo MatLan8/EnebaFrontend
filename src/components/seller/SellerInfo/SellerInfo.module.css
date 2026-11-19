@@ -1,0 +1,80 @@
+.seller {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  min-width: 0;
+}
+
+.logo,
+.logoFallback {
+  flex: none;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+}
+
+.logo {
+  object-fit: cover;
+}
+
+.logoFallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface-raised);
+  color: var(--color-text);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-black);
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.nameRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-black);
+  line-height: 1.2;
+}
+
+.name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rating {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-5);
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--font-size-12);
+  line-height: 1.2;
+}
+
+.rating svg {
+  align-self: center;
+  color: var(--color-cta);
+}
+
+.ratingMain {
+  font-weight: var(--font-weight-black);
+}
+
+.ratingWord {
+  font-weight: var(--font-weight-regular);
+}
+
+.nameCaps {
+  font-weight: var(--font-weight-regular);
+  text-transform: uppercase;
+}

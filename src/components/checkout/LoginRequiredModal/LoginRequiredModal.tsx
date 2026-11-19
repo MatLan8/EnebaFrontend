@@ -7,9 +7,13 @@ import styles from "./LoginRequiredModal.module.css";
 
 interface LoginRequiredModalProps {
   onClose: () => void;
+  message?: string;
 }
 
-export function LoginRequiredModal({ onClose }: LoginRequiredModalProps) {
+export function LoginRequiredModal({
+  onClose,
+  message = "In order to checkout, you have to be logged-in.",
+}: LoginRequiredModalProps) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,7 +40,7 @@ export function LoginRequiredModal({ onClose }: LoginRequiredModalProps) {
         <h2 id="login-required-title" className={styles.title}>
           Login required
         </h2>
-        <p className={styles.text}>In order to checkout, you have to be logged-in.</p>
+        <p className={styles.text}>{message}</p>
         <div className={styles.actions}>
           <SecondaryButton onClick={() => navigate(ROUTES.register)}>Register</SecondaryButton>
           <PrimaryButton onClick={() => navigate(ROUTES.login)}>Log in</PrimaryButton>

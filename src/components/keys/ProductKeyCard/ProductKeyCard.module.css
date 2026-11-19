@@ -1,0 +1,237 @@
+.card {
+  min-width: 0;
+  padding: var(--space-20);
+  background: var(--color-surface);
+}
+
+.title {
+  margin: 0 0 var(--space-20);
+  color: var(--color-text);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-black);
+  line-height: 22px;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-15) var(--space-10);
+  margin-bottom: var(--space-25);
+}
+
+.fact {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  min-width: 0;
+}
+
+.factIcon {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.factIcon > span {
+  position: relative;
+  display: flex;
+}
+
+.factIcon > span > svg:last-child:not(:first-child) {
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+}
+
+.platformIcon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  transform: scale(1.3);
+}
+
+.keyIcon {
+  width: 35px;
+  height: 35px;
+  color: var(--color-text);
+}
+
+.factText {
+  min-width: 0;
+}
+
+.factLabel,
+.factValue {
+  margin: 0;
+  line-height: var(--line-height-body);
+}
+
+.factLabel {
+  color: var(--color-text-muted);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-regular);
+}
+
+.factValue {
+  color: var(--color-text);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-black);
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.codeLabel {
+  margin: 0 0 var(--space-10);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+}
+
+.codeBox {
+  padding: 0 var(--space-20) var(--space-20);
+  background: var(--color-surface-raised);
+}
+
+.codeArea {
+  position: relative;
+  padding: var(--space-40) 0;
+}
+
+.codeRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-10);
+}
+
+.code {
+  min-width: 0;
+  color: var(--color-text);
+  font-size: var(--font-size-22);
+  font-weight: var(--font-weight-black);
+  line-height: var(--line-height-snug);
+  text-align: center;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.copyButton {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-5);
+  color: var(--color-text);
+  transition: color var(--duration) var(--ease);
+}
+
+.copyButton:hover,
+.copyButton:focus-visible {
+  color: var(--color-hover);
+}
+
+.copyButton:active {
+  color: var(--color-focus);
+}
+
+.copyButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.copied {
+  color: var(--color-teal);
+}
+
+.copyIcon {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.copyStatus {
+  position: absolute;
+  right: 0;
+  bottom: var(--space-10);
+  left: 0;
+  min-height: 18px;
+  margin: 0;
+  color: var(--color-teal);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
+  line-height: 18px;
+  text-align: center;
+}
+
+.libraryRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-20);
+  padding-top: var(--space-15);
+  border-top: var(--border-width) solid rgba(255, 255, 255, 0.15);
+}
+
+.libraryText {
+  flex: 1;
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+}
+
+.libraryRow .libraryButton {
+  flex: none;
+  width: auto;
+  padding: 0 var(--space-15);
+}
+
+.refund {
+  margin: var(--space-15) 0 0;
+  color: var(--color-text);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+}
+
+.seller {
+  margin-top: var(--space-20);
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: var(--space-15);
+  }
+
+  .facts {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-10);
+  }
+
+  .codeBox {
+    padding: 0 var(--space-15) var(--space-15);
+  }
+
+  .codeArea {
+    padding: var(--space-30) 0;
+  }
+
+  .code {
+    font-size: var(--font-size-18);
+  }
+
+  .libraryRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-15);
+  }
+
+  .libraryRow .libraryButton {
+    width: 100%;
+  }
+}

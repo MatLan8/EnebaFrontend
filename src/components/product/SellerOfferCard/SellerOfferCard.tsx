@@ -5,13 +5,11 @@ import { useAddToCart } from "../../../api/useAddToCart";
 import { AddedToCartModal } from "../../cart/AddedToCartModal";
 import { PrimaryButton } from "../../buttons/PrimaryButton";
 import { SecondaryButton } from "../../buttons/SecondaryButton";
+import { SellerInfo } from "../../seller/SellerInfo/SellerInfo";
 import { CartIcon } from "../../../icons/CartIcon";
-import { StarIcon } from "../../../icons/StartIcon";
-import { VerifiedSealIcon } from "../../../icons/VerificationIcon";
 import { ROUTES } from "../../../routes/paths";
 import type { Offer } from "../../../types/productDetail";
 import { formatCents } from "../../../utils/formatCents";
-import { sellerRatingLabel } from "../../../utils/sellerRating";
 import styles from "./SellerOfferCard.module.css";
 
 interface SellerOfferCardProps {
@@ -48,28 +46,7 @@ export function SellerOfferCard({ offer, basePriceCents, currency }: SellerOffer
 
   return (
     <article className={styles.card}>
-      <div className={styles.seller}>
-        {offer.seller.logoUrl ? (
-          <img className={styles.logo} src={offer.seller.logoUrl} alt="" />
-        ) : (
-          <span className={styles.logoFallback} aria-hidden="true">
-            {offer.seller.name.slice(0, 1)}
-          </span>
-        )}
-        <div className={styles.identity}>
-          <p className={styles.nameRow}>
-            <span className={styles.name}>{offer.seller.name}</span>
-            <VerifiedSealIcon />
-          </p>
-          <p className={styles.rating}>
-            <StarIcon />
-            <span className={styles.ratingMain}>
-              {offer.seller.rating.toFixed(2)} {sellerRatingLabel(offer.seller.rating)}
-            </span>
-            <span className={styles.ratingWord}>rating</span>
-          </p>
-        </div>
-      </div>
+      <SellerInfo seller={offer.seller} />
       <div className={styles.purchase}>
         <div className={styles.price}>
           {hasDiscount && (

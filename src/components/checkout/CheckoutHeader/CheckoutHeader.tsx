@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { CheckCircleOutlineIcon } from "../../../icons/CheckCircleOutlineIcon";
 import { ROUTES } from "../../../routes/paths";
 import styles from "./CheckoutHeader.module.css";
 
@@ -23,9 +24,11 @@ export function CheckoutHeader({ activeStep }: CheckoutHeaderProps) {
           {steps.map((step, index) => {
             const number = index + 1;
             const active = number === activeStep;
+            const completed = number < activeStep;
             const className = [
               styles.step,
               active && styles.active,
+              completed && styles.completed,
               number > activeStep + 1 && styles.later,
             ]
               .filter(Boolean)
@@ -36,7 +39,11 @@ export function CheckoutHeader({ activeStep }: CheckoutHeaderProps) {
                 className={className}
                 aria-current={active ? "step" : undefined}
               >
-                <span className={styles.circle}>{number}</span>
+                {completed ? (
+                  <CheckCircleOutlineIcon className={styles.checkIcon} />
+                ) : (
+                  <span className={styles.circle}>{number}</span>
+                )}
                 <span className={styles.label}>{step}</span>
               </li>
             );

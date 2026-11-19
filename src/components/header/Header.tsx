@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useGetCart } from "../../api/useGetCart";
+import { readLoggedIn } from "../../auth/session";
 import { CartIcon } from "../../icons/CartIcon";
 import { CartPanel } from "../cart/CartPanel";
+import { ProfilePanel } from "../profile/ProfilePanel";
 import { SearchBar } from "../search/SearchBar/SearchBar";
-import { readLoggedIn } from "../../auth/session";
 import { ROUTES } from "../../routes/paths";
 import styles from "./Header.module.css";
 
 export function Header() {
   const [cartOpen, setCartOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(readLoggedIn);
   const itemCount = useGetCart(true).data?.itemCount ?? 0;
-  const loggedIn = readLoggedIn();
 
   return (
     <header className={styles.header}>
@@ -31,7 +33,10 @@ export function Header() {
             aria-label={itemCount > 0 ? `My shopping cart, ${itemCount} items` : "My shopping cart"}
             aria-expanded={cartOpen}
             data-cart-toggle
-            onClick={() => setCartOpen((open) => !open)}
+            onClick={() => {
+              setCartOpen((open) => !open);
+              setProfileOpen(false);
+            }}
           >
             <CartIcon />
             {itemCount > 0 && (
@@ -43,9 +48,30 @@ export function Header() {
           {cartOpen && <CartPanel onClose={() => setCartOpen(false)} />}
         </div>
         {loggedIn ? (
-          <button type="button" className={styles.profile} aria-label="Profile">
-            <img src="/profile.svg" alt="" />
-          </button>
+          <div className={profileOpen ? `${styles.profileWrap} ${styles.profileOpen}` : styles.profileWrap}>
+            <button
+              type="button"
+              className={styles.profile}
+              aria-label="Profile"
+              aria-expanded={profileOpen}
+              data-profile-toggle
+              onClick={() => {
+                setProfileOpen((open) => !open);
+                setCartOpen(false);
+              }}
+            >
+              <img src="/profile.svg" alt="" />
+            </button>
+            {profileOpen && (
+              <ProfilePanel
+                onClose={() => setProfileOpen(false)}
+                onLoggedOut={() => {
+                  setLoggedIn(false);
+                  setProfileOpen(false);
+                }}
+              />
+            )}
+          </div>
         ) : (
           <nav className={styles.account} aria-label="Account">
             <Link to={ROUTES.login}>Log in</Link>

@@ -7,6 +7,9 @@ export const API_ROUTES = {
     logout: "/auth/logout",
     refresh: "/auth/refresh",
   },
+  Users: {
+    me: "/users/me",
+  },
   Home: {
     getBlocks: "/home",
   },

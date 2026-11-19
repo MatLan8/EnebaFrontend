@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+import { orderDetailsPath } from "../../../routes/paths";
 import type { OrderListItem } from "../../../types/order";
 import { formatCents } from "../../../utils/formatCents";
 import { formatDateTime } from "../../../utils/formatDateTime";
@@ -16,6 +18,8 @@ interface OrderRowProps {
 }
 
 export function OrderRow({ order }: OrderRowProps) {
+  const navigate = useNavigate();
+
   return (
     <AccountTableRow>
       <AccountTableCell>{formatDateTime(order.createdAt)}</AccountTableCell>
@@ -29,7 +33,12 @@ export function OrderRow({ order }: OrderRowProps) {
         {formatCents(order.totalCents, order.currency, "en-US")}
       </AccountTableCell>
       <AccountTableCell align="right" flushStart>
-        <LinkButton aria-label={`Details for order ${order.publicId}`}>Details</LinkButton>
+        <LinkButton
+          aria-label={`Details for order ${order.publicId}`}
+          onClick={() => navigate(orderDetailsPath(order.id))}
+        >
+          Details
+        </LinkButton>
       </AccountTableCell>
     </AccountTableRow>
   );

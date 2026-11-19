@@ -14,6 +14,7 @@ interface AccountQueryStateProps {
   loadingLabel: string;
   unauthorizedMessage: string;
   loginMessage: string;
+  notFoundMessage?: string;
 }
 
 export function AccountQueryState({
@@ -24,6 +25,7 @@ export function AccountQueryState({
   loadingLabel,
   unauthorizedMessage,
   loginMessage,
+  notFoundMessage,
 }: AccountQueryStateProps) {
   const [loginDismissed, setLoginDismissed] = useState(false);
   const unauthorized = axios.isAxiosError(error) && error.response?.status === 401;
@@ -47,6 +49,10 @@ export function AccountQueryState({
           )}
       </>
     );
+  }
+
+  if (notFoundMessage && axios.isAxiosError(error) && error.response?.status === 404) {
+    return <p className={styles.message}>{notFoundMessage}</p>;
   }
 
   if (error) {

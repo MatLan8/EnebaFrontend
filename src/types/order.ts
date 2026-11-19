@@ -23,3 +23,25 @@ export interface Paginated<T> {
 }
 
 export type GetOrdersResponse = Paginated<OrderListItem>;
+
+export interface OrderDetailItem {
+  id: string;
+  title: string;
+  imageUrl: string;
+  platform: Platform;
+  unitPriceCents: number;
+  currency: string;
+  sellerName: string;
+}
+
+export interface OrderDetail {
+  id: string;
+  publicId: string;
+  createdAt: string;
+  paidAt: string | null;
+  status: OrderStatus;
+  sellerNames: string[];
+  totalCents: number;
+  currency: string;
+  items: OrderDetailItem[];
+}

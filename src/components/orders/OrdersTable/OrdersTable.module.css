@@ -1,47 +1,7 @@
-.wrap {
-  max-width: 80%;
-  overflow-x: auto;
-}
-
-.table {
-  width: 100%;
-  min-width: 760px;
-  table-layout: fixed;
-  border-collapse: separate;
-  border-spacing: 0 var(--space-5);
-}
-
 .column {
   width: 14.5%;
 }
 
 .paymentColumn {
   width: 19.5%;
-}
-
-.head {
-  padding: var(--space-10) var(--space-15);
-  background: var(--color-table-header);
-  color: var(--color-manage-text);
-  font-size: var(--font-size-10);
-  font-weight: var(--font-weight-black);
-  line-height: var(--line-height-snug);
-  text-align: left;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-@media (max-width: 1100px) {
-  .wrap {
-    max-width: none;
-  }
 }

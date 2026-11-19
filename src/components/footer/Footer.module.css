@@ -301,3 +301,113 @@
   font-size: inherit;
   line-height: inherit;
 }
+
+.light {
+  margin-top: 0;
+  border-top: var(--border-width) solid var(--color-manage-border);
+  background: var(--color-table-header);
+  color: var(--color-manage-text);
+}
+
+.light .inner {
+  max-width: none;
+  padding: var(--space-40) var(--space-40) var(--space-30);
+}
+
+.light .columns {
+  gap: var(--space-70);
+  margin-right: 0;
+  padding-bottom: var(--space-30);
+}
+
+.light .column {
+  flex: none;
+  align-content: start;
+  padding: 0;
+}
+
+.light .heading {
+  padding-bottom: var(--space-10);
+  font-size: var(--font-size-14);
+  line-height: var(--line-height-snug);
+}
+
+.light .link {
+  padding: var(--space-3) 0;
+  color: var(--color-manage-text);
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-snug);
+}
+
+.light .bottom {
+  margin-bottom: var(--space-20);
+}
+
+.light .language {
+  height: 30px;
+  border-color: var(--color-filter);
+  color: var(--color-filter);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
+  transition:
+    color var(--duration) var(--ease),
+    border-color var(--duration) var(--ease);
+}
+
+.light .divider {
+  background: currentColor;
+}
+
+.light .copyright {
+  color: var(--color-manage-muted);
+  font-size: var(--font-size-12);
+}
+
+.light .inlineButton {
+  color: var(--color-manage-text);
+  text-decoration: none;
+}
+
+.light .link:hover,
+.light .link:focus-visible,
+.light .inlineButton:hover,
+.light .inlineButton:focus-visible {
+  color: var(--color-page);
+}
+
+.light .language:hover,
+.light .language:focus-visible {
+  border-color: var(--color-page);
+  background: transparent;
+  color: var(--color-page);
+}
+
+.light .link:active,
+.light .inlineButton:active,
+.light .language:active {
+  color: var(--color-surface-raised);
+}
+
+.light .link:focus-visible,
+.light .inlineButton:focus-visible,
+.light .language:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .light .inner {
+    padding: var(--space-20) var(--space-15);
+  }
+
+  .light .columns {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-15) var(--space-10);
+    margin-right: 0;
+  }
+
+  .light .column {
+    padding-right: 0;
+  }
+}

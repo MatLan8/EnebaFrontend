@@ -7,7 +7,7 @@ export const ROUTES = {
   register: "/register",
   redeemKeys: "/redeem-keys",
   orders: "/orders",
-  keysLibrary: "/keys",
+  keysLibrary: "/my-library",
 } as const;
 
 export const productPath = (slug: string) => `/product/${slug}`;

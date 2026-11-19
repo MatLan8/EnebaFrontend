@@ -1,0 +1,31 @@
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-50) 0;
+}
+
+.loading .spinner {
+  border-right-color: var(--color-table-header);
+  border-bottom-color: var(--color-table-header);
+  border-left-color: var(--color-table-header);
+}
+
+.message,
+.error {
+  margin: 0;
+  padding: var(--space-30) 0;
+  font-size: var(--font-size-14);
+  text-align: center;
+}
+
+.message {
+  color: var(--color-manage-muted);
+}
+
+.error {
+  color: var(--color-danger);
+}
+
+.error p {
+  margin: 0;
+}

@@ -1,9 +1,9 @@
 import type { OrderListItem } from "../../../types/order";
 import { formatCents } from "../../../utils/formatCents";
 import { formatDateTime } from "../../../utils/formatDateTime";
+import { AccountTableCell, AccountTableRow } from "../../account/AccountTable/AccountTable";
 import { LinkButton } from "../../buttons/LinkButton";
 import { OrderStatusLabel } from "../OrderStatusLabel/OrderStatusLabel";
-import styles from "./OrderRow.module.css";
 
 const orderTitle = (order: OrderListItem) => {
   if (!order.productTitle) return "Cancelled order";
@@ -16,25 +16,21 @@ interface OrderRowProps {
 }
 
 export function OrderRow({ order }: OrderRowProps) {
-  const title = orderTitle(order);
-
   return (
-    <tr className={styles.row}>
-      <td className={styles.cell}>{formatDateTime(order.createdAt)}</td>
-      <td className={styles.cell}>
+    <AccountTableRow>
+      <AccountTableCell>{formatDateTime(order.createdAt)}</AccountTableCell>
+      <AccountTableCell>
         <OrderStatusLabel status={order.status} />
-      </td>
-      <td className={`${styles.cell} ${styles.title}`}>
-        {title}
-      </td>
-      <td className={styles.cell}>{order.publicId}</td>
-      <td className={styles.cell}>Credit or debit card</td>
-      <td className={`${styles.cell} ${styles.amount}`}>
+      </AccountTableCell>
+      <AccountTableCell variant="wrap">{orderTitle(order)}</AccountTableCell>
+      <AccountTableCell>{order.publicId}</AccountTableCell>
+      <AccountTableCell>Credit or debit card</AccountTableCell>
+      <AccountTableCell variant="amount">
         {formatCents(order.totalCents, order.currency, "en-US")}
-      </td>
-      <td className={`${styles.cell} ${styles.details}`}>
+      </AccountTableCell>
+      <AccountTableCell align="right" flushStart>
         <LinkButton aria-label={`Details for order ${order.publicId}`}>Details</LinkButton>
-      </td>
-    </tr>
+      </AccountTableCell>
+    </AccountTableRow>
   );
 }

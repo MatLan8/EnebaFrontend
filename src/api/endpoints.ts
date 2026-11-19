@@ -26,6 +26,9 @@ export const API_ROUTES = {
     list: "/orders",
     keys: (orderId: string) => `/orders/${encodeURIComponent(orderId)}/keys`,
   },
+  Keys: {
+    list: "/keys",
+  },
   Cart: {
     get: "/cart",
     clear: "/cart",

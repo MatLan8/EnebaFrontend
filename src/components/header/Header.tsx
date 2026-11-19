@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useGetCart } from "../../api/useGetCart";
 import { readLoggedIn } from "../../auth/session";
 import { CartIcon } from "../../icons/CartIcon";
@@ -12,17 +12,31 @@ import { SearchBar } from "../search/SearchBar/SearchBar";
 import { ROUTES } from "../../routes/paths";
 import styles from "./Header.module.css";
 
-const profileItems: ProfilePanelItem[] = [
-  { label: "Orders", icon: <CartSuccessIcon width={20} height={20} /> },
-  { label: "Keys library", icon: <GamePadIcon width={20} height={20} /> },
-  { label: "Logout", icon: <LogOutIcon width={20} height={20} />, logout: true },
-];
-
 export function Header() {
   const [cartOpen, setCartOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState(readLoggedIn);
   const itemCount = useGetCart(true).data?.itemCount ?? 0;
+  const navigate = useNavigate();
+
+  const openPage = (path: string) => {
+    setProfileOpen(false);
+    navigate(path);
+  };
+
+  const profileItems: ProfilePanelItem[] = [
+    {
+      label: "Orders",
+      icon: <CartSuccessIcon width={20} height={20} />,
+      onSelect: () => openPage(ROUTES.orders),
+    },
+    {
+      label: "Keys library",
+      icon: <GamePadIcon width={20} height={20} />,
+      onSelect: () => openPage(ROUTES.keysLibrary),
+    },
+    { label: "Logout", icon: <LogOutIcon width={20} height={20} />, logout: true },
+  ];
 
   return (
     <header className={styles.header}>

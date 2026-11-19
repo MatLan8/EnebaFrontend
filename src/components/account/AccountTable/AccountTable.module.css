@@ -1,0 +1,81 @@
+.wrap {
+  max-width: 80%;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  min-width: 760px;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0 var(--space-5);
+}
+
+.head {
+  padding: var(--space-10) var(--space-15);
+  background: var(--color-table-header);
+  color: var(--color-manage-text);
+  font-size: var(--font-size-10);
+  font-weight: var(--font-weight-black);
+  line-height: var(--line-height-snug);
+  text-align: left;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.row {
+  background: var(--color-text);
+}
+
+.cell {
+  height: 45px;
+  padding: var(--space-10) var(--space-15);
+  color: var(--color-manage-text);
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-body);
+  vertical-align: middle;
+  white-space: nowrap;
+  font-weight: var(--font-weight-medium);
+}
+
+.cellWrap {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.cellAmount {
+  color: var(--color-manage-muted);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-black);
+}
+
+.cellMedia {
+  padding: 0;
+}
+
+.alignCenter {
+  text-align: center;
+}
+
+.alignRight {
+  text-align: right;
+}
+
+.flushStart {
+  padding-left: 0;
+}
+
+@media (max-width: 1100px) {
+  .wrap {
+    max-width: none;
+  }
+}

@@ -9,6 +9,7 @@ import { CheckoutPage } from "./pages/CheckoutPage/CheckoutPage";
 import { HomePage } from "./pages/HomePage/HomePage";
 import { KeyRedeem } from "./pages/KeyRedeem/KeyRedeem";
 import { KeysLibrary } from "./pages/KeysLibrary/KeysLibrary";
+import { NotFound } from "./pages/NotFound/NotFound";
 import { OrderDetails } from "./pages/OrderDetails/OrderDetails";
 import { OrdersPage } from "./pages/OrdersPage/OrdersPage";
 import { ProductPage } from "./pages/ProductPage/ProductPage";
@@ -54,6 +55,7 @@ function App() {
           <Route path={ROUTES.orderDetails} element={<OrderDetails />} />
           <Route path={ROUTES.login} element={<AuthPage mode="login" />} />
           <Route path={ROUTES.register} element={<AuthPage mode="register" />} />
+          <Route path={ROUTES.notFound} element={<NotFound />} />
         </Routes>
       </div>
       {isCheckout ? <CheckoutFooter /> : isAuth || isAccount ? null : <Footer />}

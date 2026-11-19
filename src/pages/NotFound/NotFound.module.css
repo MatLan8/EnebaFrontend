@@ -1,0 +1,75 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 70vh;
+  max-width: var(--layout-max-width);
+  margin: 0 auto;
+  padding: var(--space-70) var(--layout-padding) var(--space-40);
+}
+
+.background {
+  background: url("/NotFoundBackground.png") center / cover no-repeat, var(--color-page);
+}
+
+.background :global(header) {
+  background: var(--color-page);
+  box-shadow: 0 0 0 100vmax var(--color-page);
+  clip-path: inset(0 -100vmax);
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-30);
+}
+
+.title {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 5.2rem;
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-heading);
+}
+
+.text {
+  margin: 0;
+  color: var(--color-text);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+}
+
+.copy .button {
+  width: 210px;
+  min-height: 40px;
+  font-size: var(--font-size-16);
+}
+
+.image {
+  display: block;
+  align-self: center;
+  max-width: 100%;
+  height: auto;
+  margin-top: auto;
+  padding-top: var(--space-40);
+}
+
+@media (max-width: 600px) {
+  .page {
+    min-height: 60vh;
+    padding-top: var(--space-40);
+  }
+
+  .copy {
+    gap: var(--space-20);
+  }
+
+  .title {
+    font-size: 3.4rem;
+  }
+
+  .text {
+    font-size: 1.7rem;
+  }
+}

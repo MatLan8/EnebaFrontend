@@ -9,6 +9,7 @@ export const ROUTES = {
   orders: "/orders",
   keysLibrary: "/my-library",
   orderDetails: "/order/:id",
+  notFound: "*",
 } as const;
 
 export const productPath = (slug: string) => `/product/${slug}`;

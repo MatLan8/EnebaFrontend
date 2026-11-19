@@ -1,14 +1,39 @@
+import { useState } from "react";
+import { createPortal } from "react-dom";
+import { readApiErrors } from "../../api/readApiErrors";
+import { useCheckout } from "../../api/useCheckout";
 import { useGetCart } from "../../api/useGetCart";
+import { getAccessToken } from "../../auth/accessToken";
 import { PrimaryButton } from "../../components/buttons/PrimaryButton";
 import { CheckoutCartItem } from "../../components/checkout/CheckoutCartItem/CheckoutCartItem";
 import { CheckoutHeader } from "../../components/checkout/CheckoutHeader/CheckoutHeader";
+import { LoginRequiredModal } from "../../components/checkout/LoginRequiredModal/LoginRequiredModal";
+import { AlertCircleIcon } from "../../icons/AlertCircle";
 import { InfoCircleIcon } from "../../icons/InfoCircleIcon";
 import { formatCents } from "../../utils/formatCents";
 import styles from "./CheckoutPage.module.css";
 
 export function CheckoutPage() {
   const cart = useGetCart(true);
+  const checkout = useCheckout();
   const data = cart.data;
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [errors, setErrors] = useState<string[]>([]);
+
+  const proceed = async () => {
+    if (!getAccessToken()) {
+      setLoginOpen(true);
+      return;
+    }
+
+    setErrors([]);
+    try {
+      const result = await checkout.mutateAsync();
+      window.location.href = result.checkoutUrl;
+    } catch (error) {
+      setErrors(readApiErrors(error));
+    }
+  };
 
   return (
     <>
@@ -35,13 +60,26 @@ export function CheckoutPage() {
             </section>
             <aside className={`${styles.panel} ${styles.summary}`}>
               <h2 className={styles.heading}>Summary</h2>
-              <PrimaryButton>Proceed to checkout</PrimaryButton>
+              <PrimaryButton disabled={checkout.isPending} onClick={proceed}>
+                {checkout.isPending && <span className={styles.spinner} aria-hidden="true" />}
+                Proceed to checkout
+              </PrimaryButton>
               <div className={styles.row}>
                 <span>
                   {data.itemCount} {data.itemCount === 1 ? "product" : "products"}
                 </span>
                 <strong>{formatCents(data.totalCents, data.currency)}</strong>
               </div>
+              {errors.length > 0 && (
+                <div className={styles.errors} role="alert">
+                  {errors.map((error) => (
+                    <p key={error}>
+                      <AlertCircleIcon />
+                      {error}
+                    </p>
+                  ))}
+                </div>
+              )}
               <div className={styles.totalRow}>
                 <span>Total:</span>
                 <strong>{formatCents(data.totalCents, data.currency)}</strong>
@@ -50,6 +88,8 @@ export function CheckoutPage() {
           </div>
         )}
       </main>
+      {loginOpen &&
+        createPortal(<LoginRequiredModal onClose={() => setLoginOpen(false)} />, document.body)}
     </>
   );
 }

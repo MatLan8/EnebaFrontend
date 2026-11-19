@@ -16,6 +16,9 @@ export const API_ROUTES = {
     getSuggestions: "/products/suggestions",
     getBySlug: "/products/",
   },
+  Checkout: {
+    create: "/checkout",
+  },
   Cart: {
     get: "/cart",
     clear: "/cart",

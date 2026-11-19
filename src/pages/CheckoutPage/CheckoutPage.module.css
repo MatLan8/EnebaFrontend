@@ -60,6 +60,56 @@
   font-weight: var(--font-weight-black);
 }
 
+.errors {
+  margin-top: var(--space-15);
+  padding: var(--space-10) var(--space-15);
+  background: var(--color-text-muted);
+  color: var(--color-danger);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+}
+
+.errors p {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  margin: 0;
+}
+
+.errors p + p {
+  margin-top: var(--space-4);
+}
+
+.errors svg {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  color: var(--color-danger);
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  margin-right: var(--space-8);
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: var(--radius-full);
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 2.4s;
+  }
+}
+
 .totalRow {
   margin-top: var(--space-20);
   padding-top: var(--space-15);

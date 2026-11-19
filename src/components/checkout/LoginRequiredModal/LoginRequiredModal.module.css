@@ -1,0 +1,55 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-20);
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(2px);
+}
+
+.modal {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  padding: var(--space-30) var(--space-25) var(--space-25);
+  background: var(--color-page);
+  text-align: center;
+}
+
+.close {
+  position: absolute;
+  top: var(--space-15);
+  right: var(--space-15);
+  color: var(--color-text);
+  font-size: var(--font-size-22);
+  line-height: 1;
+}
+
+.close:hover {
+  color: var(--color-cta);
+}
+
+.title {
+  margin: 0 0 var(--space-15);
+  color: var(--color-text);
+  font-size: var(--font-size-20);
+  font-weight: var(--font-weight-black);
+  line-height: 1.2;
+}
+
+.text {
+  margin: 0 0 var(--space-25);
+  color: var(--color-text);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-regular);
+  line-height: var(--line-height-body);
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-10);
+}

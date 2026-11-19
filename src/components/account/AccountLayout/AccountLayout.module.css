@@ -1,0 +1,30 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--color-manage-page);
+}
+
+.body {
+  display: grid;
+  flex: 1;
+  grid-template-columns: 252px minmax(0, 1fr);
+}
+
+.content {
+  min-width: 0;
+  padding: var(--space-30) var(--space-40);
+  background: var(--color-manage-page);
+  color: var(--color-manage-text);
+}
+
+@media (max-width: 600px) {
+  .body {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+  }
+
+  .content {
+    padding: var(--space-15);
+  }
+}

@@ -77,6 +77,13 @@
   --color-discount: #84e916;
   --color-danger: #eb002e;
   --color-violet: #7a4edf;
+  --color-manage-page: #f6f6fb;
+  --color-table-header: #e7e6f5;
+  --color-manage-text: #1f1f1f;
+  --color-manage-muted: #8a8a99;
+  --color-manage-border: #d3d2e0;
+  --color-manage-hover: #ececf3;
+  --color-link: #4f5bd5;
 
   --color-overlay-12: rgba(0, 0, 0, 0.12);
   --color-overlay-20: rgba(0, 0, 0, 0.2);

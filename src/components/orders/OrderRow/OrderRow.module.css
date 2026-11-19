@@ -1,0 +1,30 @@
+.row {
+  background: var(--color-text);
+}
+
+.cell {
+  height: 45px;
+  padding: var(--space-10) var(--space-15);
+  color: var(--color-manage-text);
+  font-size: var(--font-size-12);
+  line-height: var(--line-height-body);
+  vertical-align: middle;
+  white-space: nowrap;
+  font-weight: var(--font-weight-medium);
+}
+
+.title {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.amount {
+  color: var(--color-manage-muted);
+  font-size: var(--font-size-16);
+  font-weight: var(--font-weight-black);
+}
+
+.details {
+  padding-left: 0;
+  text-align: right;
+}

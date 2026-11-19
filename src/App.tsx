@@ -7,6 +7,7 @@ import { Header } from "./components/header/Header";
 import { AuthPage } from "./pages/AuthPage/AuthPage";
 import { CheckoutPage } from "./pages/CheckoutPage/CheckoutPage";
 import { KeyRedeem } from "./pages/KeyRedeem/KeyRedeem";
+import { OrdersPage } from "./pages/OrdersPage/OrdersPage";
 import { ProductPage } from "./pages/ProductPage/ProductPage";
 import { StorePage } from "./pages/StorePage/StorePage";
 import { ROUTES } from "./routes/paths";
@@ -19,31 +20,34 @@ function App() {
   const isCheckout =
     location.pathname === ROUTES.checkout || location.pathname === ROUTES.redeemKeys;
   const isAuth = location.pathname === ROUTES.login || location.pathname === ROUTES.register;
+  const isAccount = location.pathname === ROUTES.orders;
+  const [sessionRequest] = useState(refreshSession);
 
   useEffect(() => {
     let active = true;
-    refreshSession().finally(() => {
+    sessionRequest.finally(() => {
       if (active) setSessionTick((tick) => tick + 1);
     });
     return () => {
       active = false;
     };
-  }, []);
+  }, [sessionRequest]);
 
   return (
     <div className={styles.app}>
-      {!isCheckout && !isAuth && <Header key={sessionTick} />}
+      {!isCheckout && !isAuth && !isAccount && <Header key={sessionTick} />}
       <div className={styles.content}>
         <Routes>
           <Route path={ROUTES.store} element={<StorePage key={resetKey} />} />
           <Route path={ROUTES.product} element={<ProductPage />} />
           <Route path={ROUTES.checkout} element={<CheckoutPage />} />
           <Route path={ROUTES.redeemKeys} element={<KeyRedeem />} />
+          <Route path={ROUTES.orders} element={<OrdersPage />} />
           <Route path={ROUTES.login} element={<AuthPage mode="login" />} />
           <Route path={ROUTES.register} element={<AuthPage mode="register" />} />
         </Routes>
       </div>
-      {isCheckout ? <CheckoutFooter /> : isAuth ? null : <Footer />}
+      {isCheckout ? <CheckoutFooter /> : isAuth || isAccount ? null : <Footer />}
     </div>
   );
 }

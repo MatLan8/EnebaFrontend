@@ -1,0 +1,82 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-20);
+  height: 68px;
+  padding: 0 var(--layout-padding);
+  background: var(--color-page);
+}
+
+.logoLink {
+  display: block;
+  flex: none;
+}
+
+.logo {
+  display: block;
+  width: 104px;
+  height: 32px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-15);
+  min-width: 0;
+  margin-left: auto;
+}
+
+.email {
+  overflow: hidden;
+  color: var(--color-text);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-snug);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.profileWrap {
+  position: relative;
+  flex: none;
+}
+
+.profileOpen {
+  z-index: 20;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  border: var(--border-width) solid var(--color-text-soft);
+  border-radius: var(--radius-full);
+  transition: border-color var(--duration) var(--ease);
+}
+
+.profile:hover {
+  border-color: var(--color-hover);
+}
+
+.profile:active {
+  border-color: var(--color-focus);
+}
+
+.profile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 0 var(--space-15);
+  }
+
+  .email {
+    display: none;
+  }
+}

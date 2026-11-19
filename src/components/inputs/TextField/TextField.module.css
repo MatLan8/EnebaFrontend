@@ -28,3 +28,35 @@
   color: var(--color-text-muted);
   font-weight: var(--font-weight-regular);
 }
+
+.light {
+  height: 30px;
+  padding: 0 var(--space-10);
+  border: var(--border-width) solid var(--color-manage-border);
+  background: var(--color-text);
+  box-shadow: none;
+  color: var(--color-manage-text);
+  font-size: var(--font-size-12);
+  transition:
+    background var(--duration) var(--ease),
+    border-color var(--duration) var(--ease);
+}
+
+.light:hover {
+  background: var(--color-manage-hover);
+}
+
+.light:focus,
+.light:focus-visible {
+  border-color: var(--color-link);
+  background: var(--color-text);
+}
+
+.light:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.light::placeholder {
+  color: var(--color-manage-muted);
+}

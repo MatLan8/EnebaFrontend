@@ -73,3 +73,30 @@
   opacity: 0.4;
   cursor: not-allowed;
 }
+
+.light,
+.light .page,
+.light .ellipsis,
+.light .arrow {
+  color: var(--color-manage-text);
+}
+
+.light .arrow {
+  border-color: var(--color-manage-text);
+}
+
+.light .page:hover,
+.light .pageActive {
+  color: var(--color-filter);
+}
+
+.light .arrow:hover:not(:disabled) {
+  border-color: var(--color-filter);
+  background: var(--color-manage-hover);
+}
+
+.light .page:focus-visible,
+.light .arrow:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}

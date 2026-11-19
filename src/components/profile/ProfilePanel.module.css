@@ -117,3 +117,52 @@
   font-size: var(--font-size-14);
   text-align: center;
 }
+
+.light {
+  background: var(--color-text);
+}
+
+.light::before {
+  border-bottom-color: var(--color-text);
+}
+
+.light .identity {
+  background: var(--color-manage-page);
+}
+
+.light .avatar {
+  border-color: var(--color-manage-border);
+}
+
+.light .name {
+  color: var(--color-manage-text);
+}
+
+.light .email {
+  color: var(--color-manage-muted);
+}
+
+.light .divider {
+  background: var(--color-manage-border);
+}
+
+.light .menu li + li {
+  border-top: var(--border-width) solid var(--color-manage-border);
+}
+
+.light .item {
+  color: var(--color-manage-text);
+}
+
+.light .item:hover,
+.light .item:focus-visible {
+  background: var(--color-manage-hover);
+}
+
+.light .item:active {
+  background: var(--color-table-header);
+}
+
+.light .status {
+  color: var(--color-manage-muted);
+}

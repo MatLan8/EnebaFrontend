@@ -1,0 +1,26 @@
+.link {
+  display: inline;
+  color: var(--color-link);
+  font-size: inherit;
+  font-weight: var(--font-weight-medium);
+  line-height: inherit;
+  text-align: left;
+  white-space: nowrap;
+  transition: color var(--duration) var(--ease);
+}
+
+.link:hover,
+.link:focus-visible {
+  text-decoration: underline;
+}
+
+.link:active {
+  color: var(--color-filter);
+}
+
+.link:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  text-decoration: none;
+  pointer-events: none;
+}

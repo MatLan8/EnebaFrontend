@@ -6,6 +6,8 @@ export const ROUTES = {
   login: "/login",
   register: "/register",
   redeemKeys: "/redeem-keys",
+  orders: "/orders",
+  keysLibrary: "/keys",
 } as const;
 
 export const productPath = (slug: string) => `/product/${slug}`;

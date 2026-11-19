@@ -3,11 +3,20 @@ import { Link } from "react-router-dom";
 import { useGetCart } from "../../api/useGetCart";
 import { readLoggedIn } from "../../auth/session";
 import { CartIcon } from "../../icons/CartIcon";
+import { CartSuccessIcon } from "../../icons/CartSuccessIcon";
+import { GamePadIcon } from "../../icons/GamePadIcon";
+import { LogOutIcon } from "../../icons/LogOutIcon";
 import { CartPanel } from "../cart/CartPanel";
-import { ProfilePanel } from "../profile/ProfilePanel";
+import { ProfilePanel, type ProfilePanelItem } from "../profile/ProfilePanel";
 import { SearchBar } from "../search/SearchBar/SearchBar";
 import { ROUTES } from "../../routes/paths";
 import styles from "./Header.module.css";
+
+const profileItems: ProfilePanelItem[] = [
+  { label: "Orders", icon: <CartSuccessIcon width={20} height={20} /> },
+  { label: "Keys library", icon: <GamePadIcon width={20} height={20} /> },
+  { label: "Logout", icon: <LogOutIcon width={20} height={20} />, logout: true },
+];
 
 export function Header() {
   const [cartOpen, setCartOpen] = useState(false);
@@ -64,6 +73,7 @@ export function Header() {
             </button>
             {profileOpen && (
               <ProfilePanel
+                items={profileItems}
                 onClose={() => setProfileOpen(false)}
                 onLoggedOut={() => {
                   setLoggedIn(false);

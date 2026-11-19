@@ -1,0 +1,18 @@
+.status {
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-black);
+  line-height: var(--line-height-snug);
+  white-space: nowrap;
+}
+
+.pending {
+  color: var(--color-manage-muted);
+}
+
+.paid {
+  color: var(--color-teal);
+}
+
+.cancelled {
+  color: var(--color-danger);
+}

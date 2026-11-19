@@ -5,6 +5,7 @@ interface PaginationProps {
   page: number;
   totalPages: number;
   onChange: (page: number) => void;
+  variant?: "dark" | "light";
 }
 
 const pageItems = (totalPages: number) => {
@@ -15,13 +16,16 @@ const pageItems = (totalPages: number) => {
   return [1, 2, 3, 4, 5, "ellipsis", totalPages] as const;
 };
 
-export function Pagination({ page, totalPages, onChange }: PaginationProps) {
+export function Pagination({ page, totalPages, onChange, variant = "dark" }: PaginationProps) {
   if (totalPages < 1) return null;
 
   const items = pageItems(totalPages);
 
   return (
-    <nav className={styles.pagination} aria-label="Pages">
+    <nav
+      className={variant === "light" ? `${styles.pagination} ${styles.light}` : styles.pagination}
+      aria-label="Pages"
+    >
       <button
         type="button"
         className={styles.arrow}

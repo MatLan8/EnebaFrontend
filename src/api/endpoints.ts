@@ -23,6 +23,7 @@ export const API_ROUTES = {
     create: "/checkout",
   },
   Orders: {
+    list: "/orders",
     keys: (orderId: string) => `/orders/${encodeURIComponent(orderId)}/keys`,
   },
   Cart: {

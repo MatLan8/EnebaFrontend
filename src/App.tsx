@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import { refreshSession } from "./auth/refreshSession";
 import { CheckoutFooter } from "./components/checkout/CheckoutFooter/CheckoutFooter";
 import { Footer } from "./components/footer/Footer";
 import { Header } from "./components/header/Header";
@@ -12,12 +14,23 @@ import styles from "./App.module.css";
 function App() {
   const location = useLocation();
   const resetKey = (location.state as { reset?: number } | null)?.reset ?? 0;
+  const [sessionTick, setSessionTick] = useState(0);
   const isCheckout = location.pathname === ROUTES.checkout;
   const isAuth = location.pathname === ROUTES.login || location.pathname === ROUTES.register;
 
+  useEffect(() => {
+    let active = true;
+    refreshSession().finally(() => {
+      if (active) setSessionTick((tick) => tick + 1);
+    });
+    return () => {
+      active = false;
+    };
+  }, []);
+
   return (
     <div className={styles.app}>
-      {!isCheckout && !isAuth && <Header />}
+      {!isCheckout && !isAuth && <Header key={sessionTick} />}
       <div className={styles.content}>
         <Routes>
           <Route path={ROUTES.store} element={<StorePage key={resetKey} />} />

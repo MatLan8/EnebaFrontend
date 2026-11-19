@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartSuccessIcon } from "../../icons/CartSuccessIcon";
+import { XCircleOutlineIcon } from "../../icons/XCircleOutlineIcon";
 import { ROUTES } from "../../routes/paths";
 import { PrimaryButton } from "../buttons/PrimaryButton";
 import { SecondaryButton } from "../buttons/SecondaryButton";
@@ -10,10 +11,16 @@ import styles from "./AddedToCartModal.module.css";
 interface AddedToCartModalProps {
   status: "pending" | "success" | "error";
   itemCount?: number;
+  errorMessage?: string;
   onClose: () => void;
 }
 
-export function AddedToCartModal({ status, itemCount = 0, onClose }: AddedToCartModalProps) {
+export function AddedToCartModal({
+  status,
+  itemCount = 0,
+  errorMessage = "Something went wrong. Please try again.",
+  onClose,
+}: AddedToCartModalProps) {
   const navigate = useNavigate();
 
   const viewCart = () => {
@@ -34,7 +41,11 @@ export function AddedToCartModal({ status, itemCount = 0, onClose }: AddedToCart
     status === "pending" ? "Adding to cart" : status === "error" ? "Could not add to cart" : "Added to cart";
 
   return (
-    <div className={styles.overlay} onMouseDown={onClose}>
+    <div
+      className={styles.overlay}
+      onMouseDown={onClose}
+      onClick={(event) => event.stopPropagation()}
+    >
       <div
         className={styles.modal}
         role="dialog"
@@ -43,7 +54,11 @@ export function AddedToCartModal({ status, itemCount = 0, onClose }: AddedToCart
         aria-busy={status === "pending"}
         onMouseDown={(event) => event.stopPropagation()}
       >
-        <CartSuccessIcon className={styles.icon} />
+        {status === "error" ? (
+          <XCircleOutlineIcon className={`${styles.icon} ${styles.iconError}`} />
+        ) : (
+          <CartSuccessIcon className={styles.icon} />
+        )}
         <h2 id="added-to-cart-title" className={styles.title}>
           {title}
         </h2>
@@ -58,7 +73,7 @@ export function AddedToCartModal({ status, itemCount = 0, onClose }: AddedToCart
           </p>
         )}
         {status === "error" && (
-          <p className={styles.text}>Something went wrong. Please try again.</p>
+          <p className={styles.text}>{errorMessage}</p>
         )}
         {status !== "pending" && (
           <div className={styles.actions}>

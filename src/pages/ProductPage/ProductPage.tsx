@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useGetProduct } from "../../api/useGetProduct";
 import { SecondaryButton } from "../../components/buttons/SecondaryButton";
+import { PageLoader } from "../../components/PageLoader/PageLoader";
 import { FeaturedOffer } from "../../components/product/FeaturedOffer/FeaturedOffer";
 import { SafeCheckout } from "../../components/product/SafeCheckout/SafeCheckout";
 import { SellerOfferCard } from "../../components/product/SellerOfferCard/SellerOfferCard";
@@ -73,7 +74,7 @@ export function ProductPage() {
   if (productQuery.isPending) {
     return (
       <main className={styles.page}>
-        <p className={styles.status}>Loading product…</p>
+        <PageLoader />
       </main>
     );
   }

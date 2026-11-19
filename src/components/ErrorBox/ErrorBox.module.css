@@ -1,0 +1,32 @@
+.box {
+  padding: var(--space-10) var(--space-15);
+  background: var(--color-text-muted);
+  color: var(--color-danger);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  text-align: left;
+}
+
+.fit {
+  width: fit-content;
+  max-width: 100%;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  margin: 0;
+}
+
+.message + .message {
+  margin-top: var(--space-4);
+}
+
+.icon {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  color: var(--color-danger);
+}

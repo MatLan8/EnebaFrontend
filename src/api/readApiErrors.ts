@@ -1,9 +1,16 @@
 import axios from "axios";
-import type { ApiErrorBody } from "../types/auth";
+import type { ApiError } from "../types/apiError";
+
+const fallbackMessage = "Something went wrong. Please try again.";
+
+export const readApiErrorMessage = (error: unknown) => {
+  if (!axios.isAxiosError<ApiError>(error)) return fallbackMessage;
+  return error.response?.data?.error?.message ?? fallbackMessage;
+};
 
 export const readApiErrors = (error: unknown) => {
-  if (!axios.isAxiosError<ApiErrorBody>(error)) {
-    return ["Something went wrong. Please try again."];
+  if (!axios.isAxiosError<ApiError>(error)) {
+    return [fallbackMessage];
   }
 
   const details = error.response?.data?.error?.details;
@@ -12,6 +19,5 @@ export const readApiErrors = (error: unknown) => {
     if (messages.length > 0) return messages;
   }
 
-  const message = error.response?.data?.error?.message;
-  return [message ?? "Something went wrong. Please try again."];
+  return [readApiErrorMessage(error)];
 };

@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
+import { readApiErrorMessage } from "../../../api/readApiErrors";
 import { useAddToCart } from "../../../api/useAddToCart";
+import { ErrorBox } from "../../ErrorBox/ErrorBox";
 import { AddedToCartModal } from "../../cart/AddedToCartModal";
 import { PrimaryButton } from "../../buttons/PrimaryButton";
 import { SecondaryButton } from "../../buttons/SecondaryButton";
@@ -33,22 +35,22 @@ export function FeaturedOffer({
   const navigate = useNavigate();
   const addToCart = useAddToCart();
   const [modalOpen, setModalOpen] = useState(false);
-  const [buyError, setBuyError] = useState(false);
+  const [buyError, setBuyError] = useState<string | null>(null);
   const hasDiscount = offer.price.discountPercent !== null;
 
   const addAndOpen = () => {
-    setBuyError(false);
+    setBuyError(null);
     setModalOpen(true);
     addToCart.mutate(offer.id);
   };
 
   const buyNow = async () => {
-    setBuyError(false);
+    setBuyError(null);
     try {
       await addToCart.mutateAsync(offer.id);
       navigate(ROUTES.checkout);
-    } catch {
-      setBuyError(true);
+    } catch (error) {
+      setBuyError(readApiErrorMessage(error));
     }
   };
 
@@ -80,7 +82,7 @@ export function FeaturedOffer({
             <CartIcon width={16} height={16} />
           </SecondaryButton>
         </div>
-        {buyError && <p className={styles.error}>Could not add to cart</p>}
+        {buyError && <ErrorBox className={styles.error} messages={[buyError]} fit />}
       </div>
       {extraOfferCount > 0 && nextOfferCents !== undefined && nextOfferCurrency && (
         <button type="button" className={styles.more} onClick={onShowOffers}>
@@ -93,6 +95,7 @@ export function FeaturedOffer({
           <AddedToCartModal
             status={modalStatus}
             itemCount={addToCart.data?.itemCount}
+            errorMessage={addToCart.isError ? readApiErrorMessage(addToCart.error) : undefined}
             onClose={() => setModalOpen(false)}
           />,
           document.body,

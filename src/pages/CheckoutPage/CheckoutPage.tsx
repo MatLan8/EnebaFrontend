@@ -8,7 +8,7 @@ import { PrimaryButton } from "../../components/buttons/PrimaryButton";
 import { CheckoutCartItem } from "../../components/checkout/CheckoutCartItem/CheckoutCartItem";
 import { CheckoutHeader } from "../../components/checkout/CheckoutHeader/CheckoutHeader";
 import { LoginRequiredModal } from "../../components/checkout/LoginRequiredModal/LoginRequiredModal";
-import { AlertCircleIcon } from "../../icons/AlertCircle";
+import { ErrorBox } from "../../components/ErrorBox/ErrorBox";
 import { InfoCircleIcon } from "../../icons/InfoCircleIcon";
 import { formatCents } from "../../utils/formatCents";
 import styles from "./CheckoutPage.module.css";
@@ -70,16 +70,7 @@ export function CheckoutPage() {
                 </span>
                 <strong>{formatCents(data.totalCents, data.currency)}</strong>
               </div>
-              {errors.length > 0 && (
-                <div className={styles.errors} role="alert">
-                  {errors.map((error) => (
-                    <p key={error}>
-                      <AlertCircleIcon />
-                      {error}
-                    </p>
-                  ))}
-                </div>
-              )}
+              <ErrorBox className={styles.errors} messages={errors} />
               <div className={styles.totalRow}>
                 <span>Total:</span>
                 <strong>{formatCents(data.totalCents, data.currency)}</strong>

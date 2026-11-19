@@ -12,10 +12,3 @@ export interface AuthResponse {
   user: User;
 }
 
-export interface ApiErrorBody {
-  error: {
-    code: string;
-    message: string;
-    details?: Record<string, string | number>;
-  };
-}

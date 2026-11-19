@@ -1,7 +1,7 @@
 import { readApiErrors } from "../../api/readApiErrors";
 import { useGetHome } from "../../api/useGetHome";
 import { ProductCarouselBlock } from "../../components/home/ProductCarouselBlock/ProductCarouselBlock";
-import { Spinner } from "../../components/Spinner/Spinner";
+import { PageLoader } from "../../components/PageLoader/PageLoader";
 import { storePath } from "../../routes/paths";
 import styles from "./HomePage.module.css";
 
@@ -12,11 +12,8 @@ export function HomePage() {
   return (
     <main className={styles.page}>
       <h1 className={styles.srOnly}>Eneba</h1>
-      {home.isPending && (
-        <div className={styles.state}>
-          <Spinner label="Loading products" />
-        </div>
-      )}
+      {home.isPending && <PageLoader />}
+
       {home.error && (
         <div className={styles.state}>
           {readApiErrors(home.error).map((message) => (

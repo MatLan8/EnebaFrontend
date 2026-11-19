@@ -1,6 +1,7 @@
 import { useState, type MouseEvent } from "react";
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
+import { readApiErrorMessage } from "../../api/readApiErrors";
 import { useAddToCart } from "../../api/useAddToCart";
 import { productPath } from "../../routes/paths";
 import { PrimaryButton } from "../buttons/PrimaryButton";
@@ -85,6 +86,7 @@ export function ProductCard({ product }: ProductCardProps) {
           <AddedToCartModal
             status={modalStatus}
             itemCount={addToCart.data?.itemCount}
+            errorMessage={addToCart.isError ? readApiErrorMessage(addToCart.error) : undefined}
             onClose={() => setModalOpen(false)}
           />,
           document.body,

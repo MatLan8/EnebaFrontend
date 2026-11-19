@@ -4,7 +4,7 @@ import { useLocation, useSearchParams } from "react-router-dom";
 import axios from "axios";
 import { readApiErrors } from "../../api/readApiErrors";
 import { useGetOrderKeys } from "../../api/useGetOrderKeys";
-import type { ApiErrorBody } from "../../types/auth";
+import type { ApiError } from "../../types/apiError";
 import { SecondaryButton } from "../../components/buttons/SecondaryButton";
 import { CheckoutHeader } from "../../components/checkout/CheckoutHeader/CheckoutHeader";
 import { LoginRequiredModal } from "../../components/checkout/LoginRequiredModal/LoginRequiredModal";
@@ -40,7 +40,7 @@ const errorCopy: Record<OrderKeysError, { title: string; text: string; retry: bo
 };
 
 const readOrderKeysError = (error: unknown): OrderKeysError => {
-  if (!axios.isAxiosError<ApiErrorBody>(error)) return "unknown";
+  if (!axios.isAxiosError<ApiError>(error)) return "unknown";
   const status = error.response?.status;
   const body = error.response?.data?.error;
   if (status === 401) return "unauthorized";

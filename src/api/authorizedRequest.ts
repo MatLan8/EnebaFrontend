@@ -1,10 +1,10 @@
 import axios, { type AxiosRequestConfig } from "axios";
 import { getAccessToken } from "../auth/accessToken";
 import { refreshSession, waitForRefresh } from "../auth/refreshSession";
-import type { ApiErrorBody } from "../types/auth";
+import type { ApiError } from "../types/apiError";
 
 const invalidToken = (error: unknown) =>
-  axios.isAxiosError<ApiErrorBody>(error) &&
+  axios.isAxiosError<ApiError>(error) &&
   error.response?.status === 401 &&
   error.response.data?.error?.code === "invalid_token";
 

@@ -58,3 +58,9 @@
 .spinner {
   margin: var(--space-10) 0 var(--space-10);
 }
+
+.iconError {
+  width: 84px;
+  height: 84px;
+  color: var(--color-danger);
+}

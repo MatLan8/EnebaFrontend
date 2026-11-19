@@ -9,6 +9,7 @@ import { ProductSort } from "../../constants/productSort";
 import { ProductType } from "../../constants/productType";
 import { ProductCard } from "../../components/ProductCard/ProductCard";
 import { NoMatches } from "../../components/NoMatches/NoMatches";
+import { PageLoader } from "../../components/PageLoader/PageLoader";
 import { ROUTES } from "../../routes/paths";
 import { FilterPills } from "../../components/filters/FilterPills/FilterPills";
 import {
@@ -139,6 +140,14 @@ export function StorePage() {
     !productQuery.isPlaceholderData &&
     productQuery.data?.total === 0;
 
+  if (productQuery.isPending) {
+    return (
+      <main className={styles.page}>
+        <PageLoader />
+      </main>
+    );
+  }
+
   if (noTextMatches) {
     return (
       <main className={styles.page}>
@@ -168,7 +177,6 @@ export function StorePage() {
               }}
             />
           </div>
-          {productQuery.isPending && <p>Loading products…</p>}
           {productQuery.error && <p>Could not load products.</p>}
           <div className={styles.grid}>
             {products.map((product) => (

@@ -13,7 +13,7 @@ import { ROUTES } from "../../routes/paths";
 import { PrimaryButton } from "../buttons/PrimaryButton";
 import { TextField } from "../inputs/TextField/TextField";
 import styles from "./AuthForm.module.css";
-import { AlertCircleIcon } from "../../icons/AlertCircle";
+import { ErrorBox } from "../ErrorBox/ErrorBox";
 
 export function LoginForm() {
   const navigate = useNavigate();
@@ -78,16 +78,7 @@ export function LoginForm() {
       >
         {showPassword ? "Hide password" : "Show password"}
       </button>
-      {errors.length > 0 && (
-        <div className={styles.errors} role="alert">
-          {errors.map((error) => (
-            <p key={error}>
-              <AlertCircleIcon />
-              {error}
-            </p>
-          ))}
-        </div>
-      )}
+      <ErrorBox className={styles.errors} messages={errors} />
       <PrimaryButton disabled={login.isPending} onClick={submit}>
         {login.isPending && (
           <span className={styles.spinner} aria-hidden="true" />

@@ -6,6 +6,7 @@ import { Footer } from "./components/footer/Footer";
 import { Header } from "./components/header/Header";
 import { AuthPage } from "./pages/AuthPage/AuthPage";
 import { CheckoutPage } from "./pages/CheckoutPage/CheckoutPage";
+import { HomePage } from "./pages/HomePage/HomePage";
 import { KeyRedeem } from "./pages/KeyRedeem/KeyRedeem";
 import { KeysLibrary } from "./pages/KeysLibrary/KeysLibrary";
 import { OrderDetails } from "./pages/OrderDetails/OrderDetails";
@@ -43,6 +44,7 @@ function App() {
       {!isCheckout && !isAuth && !isAccount && <Header key={sessionTick} />}
       <div className={styles.content}>
         <Routes>
+          <Route path={ROUTES.homepage} element={<HomePage />} />
           <Route path={ROUTES.store} element={<StorePage key={resetKey} />} />
           <Route path={ROUTES.product} element={<ProductPage />} />
           <Route path={ROUTES.checkout} element={<CheckoutPage />} />

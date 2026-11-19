@@ -40,7 +40,7 @@ export function Header() {
 
   return (
     <header className={styles.header}>
-      <Link className={styles.logoLink} to={ROUTES.store} aria-label="Eneba">
+      <Link className={styles.logoLink} to={ROUTES.homepage} aria-label="Eneba">
         <img
           className={styles.logo}
           src="https://static.eneba.games/branding/v2/logoFull.svg"

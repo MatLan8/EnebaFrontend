@@ -6,6 +6,7 @@ import {
   type ProductListParams,
 } from "../../api/useGetProducts";
 import { ProductSort } from "../../constants/productSort";
+import { ProductType } from "../../constants/productType";
 import { ProductCard } from "../../components/ProductCard/ProductCard";
 import { NoMatches } from "../../components/NoMatches/NoMatches";
 import { ROUTES } from "../../routes/paths";
@@ -66,13 +67,20 @@ const serializeFilters = (value: StoreFilterValue) =>
 
 const readFilters = (key: string): StoreFilterValue => JSON.parse(key) as StoreFilterValue;
 
+const productTypes: string[] = Object.values(ProductType);
+
+const readUrlFilters = (searchParams: URLSearchParams): StoreFilterValue => ({
+  ...emptyStoreFilters,
+  types: [...new Set(searchParams.getAll("type"))].filter((type) => productTypes.includes(type)),
+});
+
 const formatResultCount = (total: number) => (total > 1000 ? "1000+" : String(total));
 
 export function StorePage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const searchText = searchParams.get("q")?.trim() ?? "";
-  const [filters, setFilters] = useState<StoreFilterValue>(emptyStoreFilters);
+  const [filters, setFilters] = useState<StoreFilterValue>(() => readUrlFilters(searchParams));
   const [sort, setSort] = useState<ProductSort>(ProductSort.Popular);
   const [pageState, setPageState] = useState({ page: 1, searchText });
   const page = pageState.searchText === searchText ? pageState.page : 1;
@@ -92,6 +100,16 @@ export function StorePage() {
   const changeFilters = (next: StoreFilterValue) => {
     setFilters(next);
     setPage(1);
+    if (searchParams.has("type")) {
+      setSearchParams(
+        (current) => {
+          const nextParams = new URLSearchParams(current);
+          nextParams.delete("type");
+          return nextParams;
+        },
+        { replace: true },
+      );
+    }
   };
 
   const clearSearchText = () => {

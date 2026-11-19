@@ -1,0 +1,114 @@
+import { useState, type MouseEvent } from "react";
+import { createPortal } from "react-dom";
+import { useNavigate } from "react-router-dom";
+import { useAddToCart } from "../../../api/useAddToCart";
+import { AddedToCartModal } from "../../cart/AddedToCartModal";
+import { PrimaryButton } from "../../buttons/PrimaryButton";
+import { SecondaryButton } from "../../buttons/SecondaryButton";
+import { CartIcon } from "../../../icons/CartIcon";
+import { StarIcon } from "../../../icons/StartIcon";
+import { VerifiedSealIcon } from "../../../icons/VerificationIcon";
+import { ROUTES } from "../../../routes/paths";
+import type { Offer } from "../../../types/productDetail";
+import { formatCents } from "../../../utils/formatCents";
+import { sellerRatingLabel } from "../../../utils/sellerRating";
+import styles from "./SellerOfferCard.module.css";
+
+interface SellerOfferCardProps {
+  offer: Offer;
+  basePriceCents: number;
+  currency: string;
+}
+
+export function SellerOfferCard({ offer, basePriceCents, currency }: SellerOfferCardProps) {
+  const navigate = useNavigate();
+  const addToCart = useAddToCart();
+  const [modalOpen, setModalOpen] = useState(false);
+  const [buyError, setBuyError] = useState(false);
+  const hasDiscount = offer.price.discountPercent !== null;
+
+  const addAndOpen = (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    setBuyError(false);
+    setModalOpen(true);
+    addToCart.mutate(offer.id);
+  };
+
+  const buyNow = async () => {
+    setBuyError(false);
+    try {
+      await addToCart.mutateAsync(offer.id);
+      navigate(ROUTES.checkout);
+    } catch {
+      setBuyError(true);
+    }
+  };
+
+  const modalStatus = addToCart.isPending ? "pending" : addToCart.isError ? "error" : "success";
+
+  return (
+    <article className={styles.card}>
+      <div className={styles.seller}>
+        {offer.seller.logoUrl ? (
+          <img className={styles.logo} src={offer.seller.logoUrl} alt="" />
+        ) : (
+          <span className={styles.logoFallback} aria-hidden="true">
+            {offer.seller.name.slice(0, 1)}
+          </span>
+        )}
+        <div className={styles.identity}>
+          <p className={styles.nameRow}>
+            <span className={styles.name}>{offer.seller.name}</span>
+            <VerifiedSealIcon />
+          </p>
+          <p className={styles.rating}>
+            <StarIcon />
+            <span className={styles.ratingMain}>
+              {offer.seller.rating.toFixed(2)} {sellerRatingLabel(offer.seller.rating)}
+            </span>
+            <span className={styles.ratingWord}>rating</span>
+          </p>
+        </div>
+      </div>
+      <div className={styles.purchase}>
+        <div className={styles.price}>
+          {hasDiscount && (
+            <p className={styles.compare}>
+              <span className={styles.basePrice}>{formatCents(basePriceCents, currency)}</span>
+              <span className={styles.percent}>-{offer.price.discountPercent}%</span>
+            </p>
+          )}
+          <p className={styles.amount}>{formatCents(offer.price.cents, offer.price.currency)}</p>
+        </div>
+        <div className={styles.cartReveal}>
+          <SecondaryButton
+            aria-label={`Add ${offer.seller.name} offer to cart`}
+            disabled={addToCart.isPending}
+            onClick={addAndOpen}
+          >
+            <span aria-hidden="true">+</span>
+            <CartIcon width={16} height={16} />
+          </SecondaryButton>
+        </div>
+        <div className={styles.buy}>
+          <SecondaryButton className={styles.buySecondary} disabled={addToCart.isPending} onClick={buyNow}>
+            Buy now
+          </SecondaryButton>
+          <PrimaryButton className={styles.buyPrimary} disabled={addToCart.isPending} onClick={buyNow}>
+            Buy now
+          </PrimaryButton>
+        </div>
+      </div>
+      {buyError && <p className={styles.error}>Could not add to cart</p>}
+      {modalOpen &&
+        createPortal(
+          <AddedToCartModal
+            status={modalStatus}
+            itemCount={addToCart.data?.itemCount}
+            onClose={() => setModalOpen(false)}
+          />,
+          document.body,
+        )}
+    </article>
+  );
+}

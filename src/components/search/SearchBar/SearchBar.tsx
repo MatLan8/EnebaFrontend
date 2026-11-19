@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useGetProductSuggestions } from "../../../api/useGetProductSuggestions";
+import type { ProductSuggestion } from "../../../types/productSuggestions";
 import { HistoryClockIcon } from "../../../icons/HistoryIcon";
 import { SearchIcon } from "../../../icons/SearchIcon";
 import { useDebouncedValue } from "../../../hooks/useDebouncedValue";
-import { ROUTES } from "../../../routes/paths";
+import { productPath, ROUTES } from "../../../routes/paths";
 import { NoMatches } from "../../NoMatches/NoMatches";
 import { SecondaryButton } from "../../buttons/SecondaryButton";
 import { SearchSuggestionCard } from "../SearchSuggestionCard/SearchSuggestionCard";
@@ -98,6 +99,11 @@ export function SearchBar() {
     searchStore();
   };
 
+  const openProduct = (product: ProductSuggestion) => {
+    setOpen(false);
+    navigate(productPath(product.slug));
+  };
+
   const showPopularProducts = () => {
     setOpen(false);
     setQuery("");
@@ -175,7 +181,7 @@ export function SearchBar() {
                 <ul className={styles.results}>
                   {products.map((product) => (
                     <li key={product.slug}>
-                      <SearchSuggestionCard product={product} />
+                      <SearchSuggestionCard product={product} onSelect={openProduct} />
                     </li>
                   ))}
                 </ul>

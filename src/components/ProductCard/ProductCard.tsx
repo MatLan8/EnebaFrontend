@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, type MouseEvent } from "react";
 import { createPortal } from "react-dom";
+import { useNavigate } from "react-router-dom";
 import { useAddToCart } from "../../api/useAddToCart";
+import { productPath } from "../../routes/paths";
 import { PrimaryButton } from "../buttons/PrimaryButton";
 import { SecondaryButton } from "../buttons/SecondaryButton";
 import type { ProductListItem } from "../../types/product";
@@ -18,12 +20,16 @@ const formatCents = (cents: number, currency: string) =>
   });
 
 export function ProductCard({ product }: ProductCardProps) {
+  const navigate = useNavigate();
   const discountPercent = product.price.discountPercent;
   const hasDiscount = discountPercent !== null;
   const addToCart = useAddToCart();
   const [modalOpen, setModalOpen] = useState(false);
 
-  const handleAddToCart = () => {
+  const openProduct = () => navigate(productPath(product.slug));
+
+  const handleAddToCart = (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
     setModalOpen(true);
     addToCart.mutate(product.cheapestOfferId);
   };
@@ -31,7 +37,7 @@ export function ProductCard({ product }: ProductCardProps) {
   const modalStatus = addToCart.isPending ? "pending" : addToCart.isError ? "error" : "success";
 
   return (
-    <article className={styles.card}>
+    <article className={styles.card} onClick={openProduct}>
       <div className={styles.media}>
         <img
           className={styles.image}

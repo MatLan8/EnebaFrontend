@@ -4,12 +4,14 @@ import { useGetCart } from "../../api/useGetCart";
 import { CartIcon } from "../../icons/CartIcon";
 import { CartPanel } from "../cart/CartPanel";
 import { SearchBar } from "../search/SearchBar/SearchBar";
+import { readLoggedIn } from "../../auth/session";
 import { ROUTES } from "../../routes/paths";
 import styles from "./Header.module.css";
 
 export function Header() {
   const [cartOpen, setCartOpen] = useState(false);
   const itemCount = useGetCart(true).data?.itemCount ?? 0;
+  const loggedIn = readLoggedIn();
 
   return (
     <header className={styles.header}>
@@ -40,9 +42,17 @@ export function Header() {
           </button>
           {cartOpen && <CartPanel onClose={() => setCartOpen(false)} />}
         </div>
-        <button type="button" className={styles.profile} aria-label="Profile">
-          <img src="/profile.svg" alt="" />
-        </button>
+        {loggedIn ? (
+          <button type="button" className={styles.profile} aria-label="Profile">
+            <img src="/profile.svg" alt="" />
+          </button>
+        ) : (
+          <nav className={styles.account} aria-label="Account">
+            <Link to={ROUTES.login}>Log in</Link>
+            <span aria-hidden="true">|</span>
+            <Link to={ROUTES.register}>Register</Link>
+          </nav>
+        )}
       </div>
     </header>
   );

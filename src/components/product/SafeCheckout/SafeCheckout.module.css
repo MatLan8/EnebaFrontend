@@ -1,0 +1,72 @@
+.card {
+  padding: var(--space-15) var(--space-20);
+  background: var(--color-filter);
+}
+
+.title {
+  margin: 0 0 var(--space-15);
+  color: var(--color-text);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-black);
+  line-height: 1;
+}
+
+.encryption {
+  margin: 0 0 var(--space-10);
+  color: var(--color-text-faint);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.5;
+}
+
+.scam {
+  display: block;
+  width: 160px;
+  height: auto;
+  color: var(--color-text);
+}
+
+.scam path:not([fill]) {
+  fill: currentColor;
+}
+
+.score {
+  margin: var(--space-8) 0 var(--space-15);
+  color: var(--color-text-faint);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-regular);
+  line-height: 1.2;
+}
+
+.badges {
+  display: flex;
+  align-items: center;
+  gap: var(--space-15);
+}
+
+.guarantee {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  color: #9fee49;
+  font-size: var(--font-size-10);
+  font-weight: var(--font-weight-black);
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.guarantee p {
+  margin: 0;
+}
+
+.mark {
+  flex: none;
+  width: 28px;
+  height: auto;
+}
+
+.pcmag {
+  width: 129px;
+  height: 40px;
+  font-family: var(--font-family);
+}

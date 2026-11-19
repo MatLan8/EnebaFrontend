@@ -3,6 +3,7 @@ import styles from "./SearchSuggestionCard.module.css";
 
 interface SearchSuggestionCardProps {
   product: ProductSuggestion;
+  onSelect: (product: ProductSuggestion) => void;
 }
 
 const formatCents = (cents: number, currency: string) =>
@@ -11,11 +12,11 @@ const formatCents = (cents: number, currency: string) =>
     currency,
   });
 
-export function SearchSuggestionCard({ product }: SearchSuggestionCardProps) {
+export function SearchSuggestionCard({ product, onSelect }: SearchSuggestionCardProps) {
   const samePrice = product.basePriceCents === product.price.cents;
 
   return (
-    <button type="button" className={styles.card}>
+    <button type="button" className={styles.card} onClick={() => onSelect(product)}>
       <img className={styles.image} src={product.imageUrl} alt="" />
       <span className={styles.details}>
         <span className={styles.pill}>Digital good</span>

@@ -81,6 +81,27 @@
   height: 28px;
 }
 
+.account {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  color: var(--color-text);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.account a {
+  transition: color var(--duration) var(--ease);
+}
+
+.account a:hover,
+.account a:focus-visible {
+  color: var(--color-cta);
+  outline: none;
+}
+
 .cart:focus,
 .profile:focus,
 .profile:focus-visible {

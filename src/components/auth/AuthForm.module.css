@@ -1,0 +1,112 @@
+.card {
+  width: 380px;
+  padding: var(--space-25) var(--space-20) var(--space-20);
+  background: var(--color-page);
+}
+
+.title {
+  margin: 0 0 var(--space-10);
+  color: var(--color-text);
+  font-size: var(--font-size-18);
+  font-weight: var(--font-weight-black);
+  line-height: 1.2;
+}
+
+.switch {
+  margin: 0 0 var(--space-15);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-black);
+  line-height: 1.3;
+}
+
+.switch a {
+  color: var(--color-cta);
+  font-weight: var(--font-weight-black);
+}
+
+.switch a:hover {
+  color: var(--color-focus);
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.fields > * + * {
+  position: relative;
+  margin-top: var(--space-20);
+}
+
+.fields > * + *::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--space-10) * -1);
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.toggle {
+  margin: var(--space-8) 0 var(--space-15);
+  color: var(--color-teal);
+  font-size: var(--font-size-12);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.2;
+}
+
+.toggle:hover {
+  color: var(--color-cta);
+}
+
+.errors svg {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  color: var(--color-danger);
+}
+
+.errors {
+  margin: 0 0 var(--space-15);
+  padding: var(--space-10) var(--space-15);
+  background: var(--color-text-muted);
+  color: var(--color-danger);
+  font-size: var(--font-size-14);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+}
+
+.errors p {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  margin: 0;
+}
+
+.errors p + p {
+  margin-top: var(--space-4);
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  margin-right: var(--space-8);
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: var(--radius-full);
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation-duration: 2.4s;
+  }
+}

@@ -1,4 +1,10 @@
+import { useState } from "react";
+import { createPortal } from "react-dom";
+import { useAddToCart } from "../../api/useAddToCart";
+import { PrimaryButton } from "../buttons/PrimaryButton";
+import { SecondaryButton } from "../buttons/SecondaryButton";
 import type { ProductListItem } from "../../types/product";
+import { AddedToCartModal } from "../cart/AddedToCartModal";
 import styles from "./ProductCard.module.css";
 
 interface ProductCardProps {
@@ -14,6 +20,15 @@ const formatCents = (cents: number, currency: string) =>
 export function ProductCard({ product }: ProductCardProps) {
   const discountPercent = product.price.discountPercent;
   const hasDiscount = discountPercent !== null;
+  const addToCart = useAddToCart();
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleAddToCart = () => {
+    setModalOpen(true);
+    addToCart.mutate(product.cheapestOfferId);
+  };
+
+  const modalStatus = addToCart.isPending ? "pending" : addToCart.isError ? "error" : "success";
 
   return (
     <article className={styles.card}>
@@ -25,6 +40,10 @@ export function ProductCard({ product }: ProductCardProps) {
         />
       </div>
       <div className={styles.panel}>
+        <div className={styles.platform}>
+          <img className={styles.platformIcon} src={product.platform.iconUrl} alt="" />
+          <span>{product.platform.name}</span>
+        </div>
         <div className={styles.copy}>
           <p className={styles.title}>{product.title}</p>
           <p className={styles.region}>{product.region.replaceAll("_", " ")}</p>
@@ -48,21 +67,22 @@ export function ProductCard({ product }: ProductCardProps) {
             )}
           </p>
           <div className={styles.actions}>
-            <button
-              type="button"
-              className={`${styles.button} ${styles.addToCart}`}
-            >
+            <PrimaryButton disabled={addToCart.isPending} onClick={handleAddToCart}>
               Add to cart
-            </button>
-            <button
-              type="button"
-              className={`${styles.button} ${styles.viewOffers}`}
-            >
-              View offers
-            </button>
+            </PrimaryButton>
+            <SecondaryButton>View offers</SecondaryButton>
           </div>
         </div>
       </div>
+      {modalOpen &&
+        createPortal(
+          <AddedToCartModal
+            status={modalStatus}
+            itemCount={addToCart.data?.itemCount}
+            onClose={() => setModalOpen(false)}
+          />,
+          document.body,
+        )}
     </article>
   );
 }

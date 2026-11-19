@@ -167,28 +167,9 @@
 }
 
 .showAll {
-  display: flex;
   flex: none;
-  align-items: center;
-  justify-content: center;
   width: calc(100% - var(--space-30));
-  height: 40px;
+  min-height: 40px;
   margin: var(--space-15);
-  border: var(--border-light);
-  color: var(--color-text);
   font-size: var(--font-size-14);
-  font-weight: var(--font-weight-black);
-  transition:
-    background-color var(--duration) var(--ease),
-    border-color var(--duration) var(--ease);
-}
-
-.showAll:hover {
-  border-color: var(--color-cta);
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.showAll:focus,
-.showAll:focus-visible {
-  outline: none;
 }

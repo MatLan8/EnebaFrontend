@@ -1,0 +1,63 @@
+import type { SVGProps } from "react";
+
+export function TrashIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width={16}
+      height={16}
+      viewBox="0 0 24 24"
+      fill="none"
+      strokeWidth="1.5px"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+      {...props}
+    >
+      <g>
+        <line
+          x1={1}
+          y1={5}
+          x2={23}
+          y2={5}
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M14.25,1H9.75a1.5,1.5,0,0,0-1.5,1.5V5h7.5V2.5A1.5,1.5,0,0,0,14.25,1Z"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <line
+          x1={9.75}
+          y1={17.75}
+          x2={9.75}
+          y2={10.25}
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <line
+          x1={14.25}
+          y1={17.75}
+          x2={14.25}
+          y2={10.25}
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M18.86,21.62A1.49,1.49,0,0,1,17.37,23H6.63a1.49,1.49,0,0,1-1.49-1.38L3.75,5h16.5Z"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </g>
+    </svg>
+  );
+}

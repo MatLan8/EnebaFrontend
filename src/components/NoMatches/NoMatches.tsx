@@ -1,4 +1,5 @@
 import { ConfusedGhostIcon } from "../../icons/GhostIcon";
+import { PrimaryButton } from "../buttons/PrimaryButton";
 import styles from "./NoMatches.module.css";
 
 interface NoMatchesProps {
@@ -13,9 +14,9 @@ export function NoMatches({ onViewPopular }: NoMatchesProps) {
       <p className={styles.text}>
         Please check your spelling, try different keywords, or browse our product catalog.
       </p>
-      <button type="button" className={styles.popular} onClick={onViewPopular}>
+      <PrimaryButton className={styles.popular} onClick={onViewPopular}>
         View popular products
-      </button>
+      </PrimaryButton>
     </div>
   );
 }

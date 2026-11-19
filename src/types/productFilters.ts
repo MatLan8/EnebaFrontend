@@ -3,7 +3,7 @@ export interface FilterOption {
   count: number;
 }
 
-export interface GenreFilterOption {
+export interface LabeledFilterOption {
   value: string;
   label: string;
   count: number;
@@ -11,7 +11,7 @@ export interface GenreFilterOption {
 
 export interface ProductFiltersResponse {
   types: FilterOption[];
-  platforms: FilterOption[];
+  platforms: LabeledFilterOption[];
   regions: FilterOption[];
-  genres: GenreFilterOption[];
+  genres: LabeledFilterOption[];
 }

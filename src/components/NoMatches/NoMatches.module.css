@@ -28,21 +28,5 @@
 }
 
 .popular {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 35px;
-  padding: 0 var(--space-10);
-  background: var(--color-cta);
-  color: var(--color-cta-text);
-  font-size: var(--font-size-15);
-  font-weight: var(--font-weight-black);
-  line-height: 1;
-  transition: background-color var(--duration) var(--ease);
-}
-
-.popular:hover,
-.popular:focus-visible {
-  background: var(--color-focus);
-  outline: none;
+  width: auto;
 }

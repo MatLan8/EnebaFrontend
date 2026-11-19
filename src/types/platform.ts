@@ -1,0 +1,5 @@
+export interface Platform {
+  slug: string;
+  name: string;
+  iconUrl: string;
+}

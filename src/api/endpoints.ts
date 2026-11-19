@@ -18,10 +18,8 @@ export const API_ROUTES = {
   },
   Cart: {
     get: "/cart",
-    deleteItem: "/cart/",
-    removeItem: "/cart/",
     clear: "/cart",
-    addItem: "/cart/",
-    updateQuantity: "/cart/",
+    addItem: "/cart/items",
+    item: (offerId: string) => `/cart/items/${offerId}`,
   },
 };

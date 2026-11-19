@@ -26,15 +26,24 @@ This is for the frontend (React + TS). It was written from the backend source: `
 ### Shared enums (TypeScript)
 ```ts
 type ProductType = 'game' | 'dlc' | 'gift_card' | 'subscription' | 'software' | 'top_up';
-type Platform = 'steam' | 'xbox_live' | 'psn' | 'nintendo_eshop' | 'ea_app' | 'ubisoft'
-              | 'epic_games' | 'battlenet' | 'official_website';
 type Region = 'global' | 'europe' | 'north_america' | 'uk' | 'latam' | 'asia';
 type OrderStatus = 'pending' | 'paid' | 'cancelled';
 // pending   = created at checkout, waiting for payment (keys are reserved)
 // paid      = Stripe confirmed payment (via webhook), keys are sold to the buyer
 // cancelled = the Stripe session expired or failed, keys were released, the order has no items
 ```
-The backend does not provide display labels for these values (except genres); map them to labels on the frontend.
+The backend does not provide display labels for these values (except genres and platforms); map them to labels on the frontend.
+
+### Shared platform object
+Platforms are a database table, not an enum. Every product shown anywhere (except the store filters) carries the same object:
+```ts
+interface Platform {
+  slug: string;    // e.g. "steam", the value for ?platform= on GET /products
+  name: string;    // display name, e.g. "Steam", "PlayStation Network"
+  iconUrl: string; // absolute URL of a PNG icon (public Supabase storage)
+}
+```
+Current slugs: `steam`, `epic_games`, `ea_app`, `battlenet`, `psn`, `ubisoft`, `xbox_live`, `nintendo_eshop`, `microsoft`, `roblox`, `google_play`, `windows`, `eset`, `spotify`, `discord`, `riot_games`. Treat the list as data: read it from `GET /api/v1/products/filters` rather than hard-coding it.
 
 ### Shared price object
 ```ts
@@ -354,6 +363,7 @@ interface ProductListItem {
   basePriceCents: number; // official price (crossed out when discounted)
   currency: string;       // currency of basePriceCents ("EUR")
   price: Price;           // cheapest buyable offer
+  cheapestOfferId: string; // UUID of that cheapest buyable offer: POST /cart/items { offerId } adds it directly
 }
 ```
 
@@ -364,7 +374,7 @@ interface ProductListItem {
 |---|---|---|---|
 | `q` | string | no | Trimmed, max 100 characters. Title search: a case-insensitive substring match **or** a fuzzy match (pg_trgm `word_similarity ≥ 0.5`, so it tolerates typos: `eldn ring` finds Elden Ring). Empty means no search |
 | `type` | `ProductType` | yes (`?type=game&type=dlc`) | OR within the parameter. Invalid value gives 400 |
-| `platform` | `Platform` | yes | OR within. Invalid value gives 400 |
+| `platform` | platform slug | yes | OR within. Like `genre`, unknown slugs simply match nothing (no error) |
 | `region` | `Region` | yes | OR within. Invalid value gives 400 |
 | `genre` | genre slug | yes | OR within. Unknown slugs simply match nothing (no error) |
 | `minPrice` | int cents ≥ 0 | no | Compared with the cheapest buyable offer price (inclusive) |
@@ -375,7 +385,7 @@ interface ProductListItem {
 
   Different parameters are combined with AND.
 - `200` returns `Paginated<ProductListItem>`.
-- Errors: `400 validation_failed`. Details keys: `q` (`"must be at most 100 characters"`), `type`, `platform`, `region`, `minPrice`, `maxPrice`, `sort`, `page`, `limit`. For enums the message lists the allowed values.
+- Errors: `400 validation_failed`. Details keys: `q` (`"must be at most 100 characters"`), `type`, `region`, `minPrice`, `maxPrice`, `sort`, `page`, `limit`. For enums the message lists the allowed values.
 ```bash
 curl 'http://localhost:8080/api/v1/products?platform=steam&type=game&maxPrice=6000&sort=price_asc&page=1&limit=24'
 ```
@@ -387,12 +397,12 @@ curl 'http://localhost:8080/api/v1/products?platform=steam&type=game&maxPrice=60
 ```ts
 interface ProductFiltersResponse {
   types: FilterOption[];      // value is a ProductType
-  platforms: FilterOption[];  // value is a Platform
+  platforms: LabeledFilterOption[]; // value = platform slug for ?platform=, label = platform name (no icon here)
   regions: FilterOption[];    // value is a Region
-  genres: GenreFilterOption[];
+  genres: LabeledFilterOption[];    // value = genre slug for ?genre=, label = genre name
 }
-interface FilterOption { value: string; count: number; }                 // sorted by count desc, then value
-interface GenreFilterOption { value: string; label: string; count: number; } // value = slug for ?genre=, label = display name
+interface FilterOption { value: string; count: number; }                   // sorted by count desc, then value
+interface LabeledFilterOption { value: string; label: string; count: number; }
 ```
 - Only values with at least one buyable product appear. Values with zero products are not listed.
 - There is no price range in this response. The store's price filter takes any whole number of cents via `minPrice` / `maxPrice` on `GET /api/v1/products`.
@@ -420,6 +430,7 @@ interface ProductSuggestion {
   title: string;
   imageUrl: string;
   isDlc: boolean;          // show a DLC badge
+  platform: Platform;
   basePriceCents: number;
   currency: string;        // currency of basePriceCents
   price: Price;            // cheapest buyable offer
@@ -499,6 +510,7 @@ interface CartItem {
     slug: string;
     title: string;
     imageUrl: string;
+    platform: Platform;
     isDlc: boolean;
   };
   seller: {
@@ -646,12 +658,13 @@ interface OrderListItem {
   createdAt: string;           // RFC 3339
   status: OrderStatus;
   productTitle: string | null; // title of the order's FIRST item; null for CANCELLED orders (their items are deleted)
+  platform: Platform | null;   // platform of that first item; null for cancelled orders
   itemCount: number;           // number of keys in the order; 0 for cancelled orders
   totalCents: number;
   currency: string;
 }
 ```
-- `productTitle` is only the first item. Use `itemCount` for a label such as "Elden Ring + 2 more" (`itemCount - 1` more).
+- `productTitle` and `platform` are only the first item. Use `itemCount` for a label such as "Elden Ring + 2 more" (`itemCount - 1` more).
 - Errors:
   - `401`
   - `400 validation_failed`, with keys `page`, `limit`, `publicId` (`"must be at most 32 characters"`)
@@ -678,6 +691,7 @@ interface OrderDetailItem {
   id: string;             // order item UUID (NOT the digital key id)
   title: string;          // product title
   imageUrl: string;
+  platform: Platform;
   unitPriceCents: number; // the price paid, fixed at checkout
   currency: string;       // same as the order's currency
   sellerName: string;
@@ -757,6 +771,7 @@ interface KeyListItem {
   sellerName: string;
   productTitle: string;
   productImageUrl: string;
+  platform: Platform;
   priceCents: number;      // price paid for this key
   currency: string;        // the order's currency
 }
@@ -777,7 +792,7 @@ curl 'http://localhost:8080/api/v1/keys?q=elden&page=1&limit=10' -H "Authorizati
 1. Home: `GET /api/v1/home`. Render the blocks. A "Show all" link uses `block.productTypes` as repeated `type` filters.
 2. Store: `GET /api/v1/products/filters` once for the sidebar, then `GET /api/v1/products?...` as filters, sort and page change. The search box uses `GET /api/v1/products/suggestions?q=` (debounced, ≥ 3 characters).
 3. Product page: `GET /api/v1/products/{slug}`. Show `offers` (cheapest first). If `offers` is empty, show "out of stock".
-4. Add to cart: `POST /api/v1/cart/items {offerId}` with `credentials: 'include'`. The cookie is set automatically. Use the returned cart for the badge (`itemCount`).
+4. Add to cart: `POST /api/v1/cart/items {offerId}` (an offer from the product page, or `cheapestOfferId` straight from a store/home card) with `credentials: 'include'`. The cookie is set automatically. Use the returned cart for the badge (`itemCount`).
 5. Cart page: `GET /api/v1/cart`. Use `PATCH` to change quantity (cap it with `availableQuantity`) and `DELETE /items/{offerId}` to remove a line. Warn on lines with `available: false` before checkout.
 6. Checkout button. The user must be logged in; otherwise send them to login first, and the cart cookie survives login. Call `POST /api/v1/checkout` (Bearer + credentials), then `window.location.href = checkoutUrl`. Handle `cart_empty`, `offer_unavailable` (`details.offerId`), `insufficient_stock` (`details.offerId`, `details.availableQuantity`), `checkout_already_completed` (`details.orderId`), `checkout_superseded` and `payment_provider_error`.
 7. On Stripe:
@@ -794,7 +809,7 @@ curl 'http://localhost:8080/api/v1/keys?q=elden&page=1&limit=10' -H "Authorizati
 
 ### Orders history
 - `GET /api/v1/orders?page=&publicId=` → click a row → `GET /api/v1/orders/{id}`.
-- Cancelled orders have `productTitle: null` in the list, and `items: []` and `sellerNames: []` in the detail. Render a fallback such as "Cancelled order".
+- Cancelled orders have `productTitle: null` and `platform: null` in the list, and `items: []` and `sellerNames: []` in the detail. Render a fallback such as "Cancelled order".
 
 ### Session bootstrap
 - On app load, call `POST /api/v1/auth/refresh` (credentials).

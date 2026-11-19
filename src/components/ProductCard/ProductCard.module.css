@@ -46,6 +46,30 @@
   transform: translateY(0);
 }
 
+.platform {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  width: 100%;
+  height: 22px;
+  background: var(--color-overlay-55);
+  backdrop-filter: blur(4px);
+  color: var(--color-text);
+  font-size: var(--font-size-10);
+  font-weight: var(--font-weight-black);
+  line-height: 1;
+}
+
+.platformIcon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
 .copy {
   padding: var(--space-15) var(--space-15) var(--space-10);
 }
@@ -109,51 +133,4 @@
   flex-direction: column;
   gap: var(--space-10);
   padding-top: var(--space-15);
-}
-
-.button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 35px;
-  padding: 0 var(--space-10);
-  border-radius: var(--radius-0);
-  font-size: var(--font-size-15);
-  font-weight: var(--font-weight-black);
-  line-height: var(--font-size-15);
-  text-align: center;
-  user-select: none;
-  transition: var(--transition-ui);
-}
-
-.addToCart {
-  border: 0;
-  background: var(--color-cta);
-  color: var(--color-cta-text);
-}
-
-.addToCart:hover,
-.addToCart:focus-visible {
-  background: var(--color-focus);
-}
-
-.addToCart:active {
-  background: #d7930e;
-}
-
-.viewOffers {
-  border: var(--border-light);
-  background: transparent;
-  color: var(--color-text);
-}
-
-.viewOffers:hover {
-  border-color: var(--color-hover);
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.viewOffers:active,
-.viewOffers:focus-visible {
-  background: rgba(0, 0, 0, 0.4);
 }

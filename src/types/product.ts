@@ -1,6 +1,6 @@
-import type { Platform } from "../constants/platform";
 import type { ProductType } from "../constants/productType";
 import type { Region } from "../constants/region";
+import type { Platform } from "./platform";
 
 export interface Price {
   cents: number;
@@ -19,6 +19,7 @@ export interface ProductListItem {
   basePriceCents: number;
   currency: string;
   price: Price;
+  cheapestOfferId: string;
 }
 
 export interface GetProductsResponse {

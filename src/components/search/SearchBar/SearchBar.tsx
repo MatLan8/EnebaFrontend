@@ -6,6 +6,7 @@ import { SearchIcon } from "../../../icons/SearchIcon";
 import { useDebouncedValue } from "../../../hooks/useDebouncedValue";
 import { ROUTES } from "../../../routes/paths";
 import { NoMatches } from "../../NoMatches/NoMatches";
+import { SecondaryButton } from "../../buttons/SecondaryButton";
 import { SearchSuggestionCard } from "../SearchSuggestionCard/SearchSuggestionCard";
 import styles from "./SearchBar.module.css";
 
@@ -178,13 +179,9 @@ export function SearchBar() {
                     </li>
                   ))}
                 </ul>
-                <button
-                  type="button"
-                  className={styles.showAll}
-                  onClick={searchStore}
-                >
+                <SecondaryButton className={styles.showAll} onClick={searchStore}>
                   Show all {suggestions.data.total} results
-                </button>
+                </SecondaryButton>
               </>
             )}
           </div>

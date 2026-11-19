@@ -1,0 +1,48 @@
+import { Link } from "react-router-dom";
+import { ROUTES } from "../../../routes/paths";
+import styles from "./CheckoutHeader.module.css";
+
+const steps = ["Cart", "Payment", "Get your product"];
+
+interface CheckoutHeaderProps {
+  activeStep: number;
+}
+
+export function CheckoutHeader({ activeStep }: CheckoutHeaderProps) {
+  return (
+    <header className={styles.header}>
+      <div className={styles.inner}>
+        <Link className={styles.logoLink} to={ROUTES.store} aria-label="Eneba">
+          <img
+            className={styles.logo}
+            src="https://static.eneba.games/branding/v2/logoFull.svg"
+            alt="Eneba"
+          />
+        </Link>
+        <ol className={styles.steps}>
+          {steps.map((step, index) => {
+            const number = index + 1;
+            const active = number === activeStep;
+            const className = [
+              styles.step,
+              active && styles.active,
+              number > activeStep + 1 && styles.later,
+            ]
+              .filter(Boolean)
+              .join(" ");
+            return (
+              <li
+                key={step}
+                className={className}
+                aria-current={active ? "step" : undefined}
+              >
+                <span className={styles.circle}>{number}</span>
+                <span className={styles.label}>{step}</span>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+    </header>
+  );
+}

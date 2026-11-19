@@ -4,7 +4,7 @@ import type { FilterOption } from "../../types/productFilters";
 
 export type FilterGroup = "type" | "platform" | "region" | "genre";
 
-const typeLabels: Record<ProductType, string> = {
+export const typeLabels: Record<ProductType, string> = {
   game: "Game",
   dlc: "DLC",
   gift_card: "Gift card",

@@ -84,6 +84,15 @@ export function StorePage() {
   const [filters, setFilters] = useState<StoreFilterValue>(() => readUrlFilters(searchParams));
   const [sort, setSort] = useState<ProductSort>(ProductSort.Popular);
   const [pageState, setPageState] = useState({ page: 1, searchText });
+  const urlTypes = searchParams.getAll("type").join(",");
+  const [appliedUrlTypes, setAppliedUrlTypes] = useState(urlTypes);
+  if (urlTypes !== appliedUrlTypes) {
+    setAppliedUrlTypes(urlTypes);
+    if (urlTypes) {
+      setFilters(readUrlFilters(searchParams));
+      setPageState({ page: 1, searchText });
+    }
+  }
   const page = pageState.searchText === searchText ? pageState.page : 1;
   const setPage = (next: number) => setPageState({ page: next, searchText });
   const debouncedFilters = useDebouncedValue(serializeFilters(filters), filterDebounceMs);

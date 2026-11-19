@@ -10,6 +10,7 @@ import { CartPanel } from "../cart/CartPanel";
 import { ProfilePanel, type ProfilePanelItem } from "../profile/ProfilePanel";
 import { SearchBar } from "../search/SearchBar/SearchBar";
 import { ROUTES } from "../../routes/paths";
+import { CategoryBar } from "./CategoryBar/CategoryBar";
 import styles from "./Header.module.css";
 
 export function Header() {
@@ -39,71 +40,74 @@ export function Header() {
   ];
 
   return (
-    <header className={styles.header}>
-      <Link className={styles.logoLink} to={ROUTES.homepage} aria-label="Eneba">
-        <img
-          className={styles.logo}
-          src="https://static.eneba.games/branding/v2/logoFull.svg"
-          alt="Eneba"
-        />
-      </Link>
-      <SearchBar />
-      <div className={styles.actions}>
-        <div className={cartOpen ? `${styles.cartWrap} ${styles.cartOpen}` : styles.cartWrap}>
-          <button
-            type="button"
-            className={styles.cart}
-            aria-label={itemCount > 0 ? `My shopping cart, ${itemCount} items` : "My shopping cart"}
-            aria-expanded={cartOpen}
-            data-cart-toggle
-            onClick={() => {
-              setCartOpen((open) => !open);
-              setProfileOpen(false);
-            }}
-          >
-            <CartIcon />
-            {itemCount > 0 && (
-              <span className={styles.badge} aria-hidden="true">
-                {itemCount}
-              </span>
-            )}
-          </button>
-          {cartOpen && <CartPanel onClose={() => setCartOpen(false)} />}
-        </div>
-        {loggedIn ? (
-          <div className={profileOpen ? `${styles.profileWrap} ${styles.profileOpen}` : styles.profileWrap}>
+    <>
+      <header className={styles.header}>
+        <Link className={styles.logoLink} to={ROUTES.homepage} aria-label="Eneba">
+          <img
+            className={styles.logo}
+            src="https://static.eneba.games/branding/v2/logoFull.svg"
+            alt="Eneba"
+          />
+        </Link>
+        <SearchBar />
+        <div className={styles.actions}>
+          <div className={cartOpen ? `${styles.cartWrap} ${styles.cartOpen}` : styles.cartWrap}>
             <button
               type="button"
-              className={styles.profile}
-              aria-label="Profile"
-              aria-expanded={profileOpen}
-              data-profile-toggle
+              className={styles.cart}
+              aria-label={itemCount > 0 ? `My shopping cart, ${itemCount} items` : "My shopping cart"}
+              aria-expanded={cartOpen}
+              data-cart-toggle
               onClick={() => {
-                setProfileOpen((open) => !open);
-                setCartOpen(false);
+                setCartOpen((open) => !open);
+                setProfileOpen(false);
               }}
             >
-              <img src="/profile.svg" alt="" />
+              <CartIcon />
+              {itemCount > 0 && (
+                <span className={styles.badge} aria-hidden="true">
+                  {itemCount}
+                </span>
+              )}
             </button>
-            {profileOpen && (
-              <ProfilePanel
-                items={profileItems}
-                onClose={() => setProfileOpen(false)}
-                onLoggedOut={() => {
-                  setLoggedIn(false);
-                  setProfileOpen(false);
-                }}
-              />
-            )}
+            {cartOpen && <CartPanel onClose={() => setCartOpen(false)} />}
           </div>
-        ) : (
-          <nav className={styles.account} aria-label="Account">
-            <Link to={ROUTES.login}>Log in</Link>
-            <span aria-hidden="true">|</span>
-            <Link to={ROUTES.register}>Register</Link>
-          </nav>
-        )}
-      </div>
-    </header>
+          {loggedIn ? (
+            <div className={profileOpen ? `${styles.profileWrap} ${styles.profileOpen}` : styles.profileWrap}>
+              <button
+                type="button"
+                className={styles.profile}
+                aria-label="Profile"
+                aria-expanded={profileOpen}
+                data-profile-toggle
+                onClick={() => {
+                  setProfileOpen((open) => !open);
+                  setCartOpen(false);
+                }}
+              >
+                <img src="/profile.svg" alt="" />
+              </button>
+              {profileOpen && (
+                <ProfilePanel
+                  items={profileItems}
+                  onClose={() => setProfileOpen(false)}
+                  onLoggedOut={() => {
+                    setLoggedIn(false);
+                    setProfileOpen(false);
+                  }}
+                />
+              )}
+            </div>
+          ) : (
+            <nav className={styles.account} aria-label="Account">
+              <Link to={ROUTES.login}>Log in</Link>
+              <span aria-hidden="true">|</span>
+              <Link to={ROUTES.register}>Register</Link>
+            </nav>
+          )}
+        </div>
+      </header>
+      <CategoryBar />
+    </>
   );
 }
